@@ -14,8 +14,10 @@
 	export let posts: Post[];
 </script>
 
-{#if posts.length}
-	<p>Select a hot take from the left.</p>
-{:else}
-	<p>Add your first hot take.</p>
-{/if}
+<div class="flex flex-col place-items-center">
+	{#if posts.length}
+		<p>Select a hot take from the left.</p>
+	{:else}
+		<p>Add your first hot take.</p>
+	{/if}
+</div>
