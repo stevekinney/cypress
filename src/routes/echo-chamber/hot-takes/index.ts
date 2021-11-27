@@ -29,8 +29,14 @@ export const post: RequestHandler = async (request: ServerRequest<any, FormData>
 		}
 	});
 
+	if (request.headers.accept !== 'application/json') {
+		return {
+			headers: { Location: `/echo-chamber/${post.id}` },
+			status: 303
+		};
+	}
+
 	return {
-		headers: { Location: `/echo-chamber/${post.id}` },
-		status: 302
+		status: 201
 	};
 };

@@ -26,6 +26,10 @@
 	export let posts: Post[];
 </script>
 
+<svelte:head>
+	<title>Echo Chamber — Cypress, Frontend Masters</title>
+</svelte:head>
+
 <header>
 	<h1>Echo Chamber</h1>
 	<p>A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
