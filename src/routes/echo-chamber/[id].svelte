@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { focusOnMount } from './../../lib/utilities/focus-on-mount.ts';
+	import { focusOnMount } from '$lib/utilities/focus-on-mount';
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ page, fetch }) => {
