@@ -36,7 +36,7 @@
 
 <form
 	id="new-post"
-	class="bg-purple-200 p-4 border-2 border-purple-400 w-full"
+	class="bg-purple-200 p-4 border-2 border-purple-400 w-full h-36 flex flex-col justify-around"
 	action="/echo-chamber/hot-takes"
 	method="post"
 	on:submit|preventDefault={createPost}

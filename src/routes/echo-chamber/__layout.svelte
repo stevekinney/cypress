@@ -50,6 +50,6 @@
 
 <style lang="postcss">
 	.content {
-		@apply p-4 h-80 border-2 border-purple-400;
+		@apply p-4 border-2 border-purple-400;
 	}
 </style>
