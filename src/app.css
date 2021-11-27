@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+	body {
+		@apply min-h-screen;
+	}
+
 	h1,
 	h2,
 	h3,
@@ -11,11 +15,11 @@
 	}
 
 	label {
-		@apply font-semibold text-purple-800;
+		@apply text-purple-800 font-semibold;
 	}
 
 	input {
-		@apply border-2 border-purple-800 p-2;
+		@apply p-2 border-2 border-purple-800;
 	}
 
 	input.small {
@@ -24,7 +28,7 @@
 
 	button,
 	a.button {
-		@apply bg-purple-500 border-purple-800 border-2 text-white px-4 py-2;
+		@apply px-4 py-2 text-white bg-purple-500 border-2 border-purple-800;
 	}
 
 	button:hover,
@@ -39,7 +43,7 @@
 
 	button:disabled,
 	a.button:disabled {
-		@apply bg-purple-100 text-purple-400 border-purple-400;
+		@apply text-purple-400 bg-purple-100 border-purple-400;
 	}
 
 	button.danger,
@@ -59,6 +63,6 @@
 
 	button.small,
 	a.button.small {
-		@apply text-xs px-2 py-0;
+		@apply px-2 py-0 text-xs;
 	}
 }
