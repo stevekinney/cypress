@@ -22,8 +22,6 @@ export const get: RequestHandler = async () => {
 };
 
 export const post = async (request: ServerRequest<Record<string, any>>) => {
-	console.log(request.headers);
-
 	let text: string;
 
 	if (typeof request.body === 'string') {

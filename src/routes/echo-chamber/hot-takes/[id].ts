@@ -1,5 +1,5 @@
 import { prisma } from '$lib/utilities/database';
-import type { RequestHandler, Request } from '@sveltejs/kit';
+import type { RequestHandler } from '@sveltejs/kit';
 import type { ReadOnlyFormData } from '@sveltejs/kit/types/helper';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
@@ -29,7 +29,6 @@ export const post = async (request: ServerRequest<Record<string, any>, ReadOnlyF
 };
 
 export const patch = async (request: ServerRequest<Record<string, any>, ReadOnlyFormData>) => {
-	console.log(request);
 	const text = request.body.get('text');
 
 	const post = await prisma.post.update({
@@ -56,8 +55,6 @@ export const patch = async (request: ServerRequest<Record<string, any>, ReadOnly
 
 export const del: RequestHandler = async (request) => {
 	const id = +request.params.id;
-
-	console.log(request);
 
 	await prisma.post.delete({
 		where: {

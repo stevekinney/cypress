@@ -4,13 +4,15 @@
 
 	export const load: Load = async ({ page, fetch }) => {
 		const endpoint = `/echo-chamber/hot-takes/${page.params.id}`;
+		const editing = page.query.has('editing');
 		const res = await fetch(endpoint);
 
 		if (res.ok) {
 			const { post } = await res.json();
 			return {
 				props: {
-					post
+					post,
+					editing
 				}
 			};
 		}
@@ -30,14 +32,6 @@
 
 	$: isEditing = $page.query.has('editing');
 	$: draft = post.text;
-
-	const toggleEditing = () => {
-		if (isEditing) {
-			goto($page.path);
-		} else {
-			goto($page.path + '?editing');
-		}
-	};
 
 	const updatePost = () => {
 		fetch('/echo-chamber/hot-takes/' + post.id, {
@@ -70,7 +64,13 @@
 	<header class="flex content-between mb-6">
 		<div class="w-full"><a href="/echo-chamber">&larr; Close</a></div>
 		<div class="w-full flex gap-2 justify-end">
-			<div><button on:click={toggleEditing} class="small">Edit</button></div>
+			<div>
+				{#if !isEditing}
+					<a class="button small" href="{$page.path}?editing">Edit</a>
+				{:else}
+					<a class="button small" href={$page.path}>Cancel</a>
+				{/if}
+			</div>
 			<form
 				action="/echo-chamber/hot-takes/{post.id}?_method=DELETE"
 				method="post"
