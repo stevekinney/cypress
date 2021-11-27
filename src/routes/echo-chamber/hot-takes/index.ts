@@ -3,7 +3,13 @@ import type { RequestHandler } from '@sveltejs/kit';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const get: RequestHandler = async () => {
-	const posts = await prisma.post.findMany();
+	const posts = await prisma.post.findMany({
+		orderBy: [
+			{
+				createdAt: 'desc'
+			}
+		]
+	});
 
 	if (posts) {
 		return {
@@ -17,14 +23,14 @@ export const get: RequestHandler = async () => {
 export const post: RequestHandler = async (request: ServerRequest<any, FormData>) => {
 	const text = request.body.get('text');
 
-	await prisma.post.create({
+	const post = await prisma.post.create({
 		data: {
 			text
 		}
 	});
 
 	return {
-		headers: { Location: '/echo-chamber' },
+		headers: { Location: `/echo-chamber/${post.id}` },
 		status: 302
 	};
 };
