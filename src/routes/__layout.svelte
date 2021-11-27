@@ -9,7 +9,6 @@
 
 	$: {
 		const { path } = $page;
-		console.log(path, applications);
 		applications = applications.map((application) => ({
 			...application,
 			active: path.startsWith(application.path)
