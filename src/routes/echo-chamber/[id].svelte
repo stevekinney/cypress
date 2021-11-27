@@ -29,9 +29,9 @@
 	import { page } from '$app/stores';
 
 	export let post: Post;
+	let draft = post.text;
 
 	$: isEditing = $page.query.has('editing');
-	$: draft = post.text;
 
 	const updatePost = () => {
 		fetch('/echo-chamber/hot-takes/' + post.id, {

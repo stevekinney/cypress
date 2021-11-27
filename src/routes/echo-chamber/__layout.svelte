@@ -36,26 +36,20 @@
 	<p>A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
 </header>
 
-<div class="flex gap-2 flex-col md:flex-row">
-	<div class="sm:w-full lg:w-1/3">
-		<CreatePost />
-		<section id="posts">
-			{#each posts as post (post.id)}
-				<HotTake {post} />
-			{/each}
-		</section>
-	</div>
-	<div class="content">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+	<CreatePost />
+	<div class="content col-span-2 row-span-2">
 		<slot />
 	</div>
+	<section id="posts" class="flex flex-col gap-2">
+		{#each posts as post (post.id)}
+			<HotTake {post} />
+		{/each}
+	</section>
 </div>
 
 <style lang="postcss">
-	#posts {
-		@apply mt-4;
-	}
-
 	.content {
-		@apply mt-4 p-4 w-full border-2 border-purple-400;
+		@apply p-4 h-80 border-2 border-purple-400;
 	}
 </style>

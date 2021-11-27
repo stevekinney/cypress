@@ -23,7 +23,7 @@
 	}
 
 	.post {
-		@apply my-2 p-4 border-2 border-purple-400;
+		@apply p-4 border-2 border-purple-400;
 	}
 
 	.active {

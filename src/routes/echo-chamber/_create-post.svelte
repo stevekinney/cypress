@@ -36,16 +36,16 @@
 
 <form
 	id="new-post"
-	class="my-4 bg-purple-200 p-4 border-2 border-purple-400 w-full"
+	class="bg-purple-200 p-4 border-2 border-purple-400 w-full"
 	action="/echo-chamber/hot-takes"
 	method="post"
-	required
 	on:submit|preventDefault={createPost}
 >
 	<input
 		class="w-full mb-2"
 		name="text"
 		aria-label="New Post"
+		required
 		placeholder="What if your hottest take?"
 	/>
 	<button class="w-full">Post</button>
