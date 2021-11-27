@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-bold;
+	}
+
+	label {
+		@apply font-semibold text-purple-800;
+	}
+
+	input {
+		@apply border-2 border-purple-800 p-2;
+	}
+
+	input.small {
+		@apply text-sm;
+	}
+
+	button {
+		@apply bg-purple-500 border-purple-800 border-2 text-white px-4 py-2;
+	}
+
+	button:hover {
+		@apply bg-purple-600;
+	}
+
+	button:active {
+		@apply bg-purple-400;
+	}
+
+	button:disabled {
+		@apply bg-purple-100 text-purple-400 border-purple-400;
+	}
+
+	button.danger {
+		@apply bg-red-600 border-red-800;
+	}
+
+	button.danger:hover {
+		@apply bg-red-500;
+	}
+
+	button.danger:active {
+		@apply bg-red-600;
+	}
+
+	button.small {
+		@apply text-xs px-2 py-0;
+	}
+}
