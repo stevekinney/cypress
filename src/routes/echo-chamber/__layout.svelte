@@ -56,6 +56,6 @@
 	}
 
 	.content {
-		@apply w-full p-4 border-2 border-purple-400 mt-4;
+		@apply mt-4 p-4 w-full border-2 border-purple-400;
 	}
 </style>

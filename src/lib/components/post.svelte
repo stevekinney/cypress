@@ -23,7 +23,7 @@
 	}
 
 	.post {
-		@apply p-4 border-purple-400 border-2 my-2;
+		@apply my-2 p-4 border-2 border-purple-400;
 	}
 
 	.active {
@@ -31,6 +31,6 @@
 	}
 
 	.post-metadata {
-		@apply italic text-right text-sm text-purple-700;
+		@apply text-right text-purple-700 text-sm italic;
 	}
 </style>

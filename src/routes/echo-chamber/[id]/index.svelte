@@ -103,7 +103,7 @@
 	}
 
 	.post-edit {
-		@apply bg-purple-200 border-2 border-purple-400 my-4 p-4 flex gap-2 justify-between;
+		@apply flex gap-2 justify-between my-4 p-4 bg-purple-200 border-2 border-purple-400;
 	}
 
 	.post-edit input {
