@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ page, fetch }) => {
+	export const load: Load = async ({ fetch }) => {
 		const endpoint = '/echo-chamber/hot-takes';
 		const res = await fetch(endpoint);
 
@@ -22,6 +22,7 @@
 
 <script lang="ts">
 	import HotTake from '$lib/components/post.svelte';
+	import CreatePost from './_create-post.svelte';
 
 	export let posts: Post[];
 </script>
@@ -35,20 +36,11 @@
 	<p>A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
 </header>
 
-<div class="flex gap-2">
-	<div class="sidebar">
-		<form
-			id="new-post"
-			class="my-4 bg-purple-200 p-4 border-2 border-purple-400 flex gap-2 items-end justify-center"
-			action="/echo-chamber/hot-takes"
-			method="post"
-		>
-			<input name="text" aria-label="New Post" placeholder="What if your hottest take?" />
-			<button>Lead Thought</button>
-		</form>
-
+<div class="flex gap-2 flex-col md:flex-row">
+	<div class="sm:w-full lg:w-1/3">
+		<CreatePost />
 		<section id="posts">
-			{#each posts as post}
+			{#each posts as post (post.id)}
 				<HotTake {post} />
 			{/each}
 		</section>
@@ -63,11 +55,7 @@
 		@apply mt-4;
 	}
 
-	.sidebar {
-		@apply w-1/3;
-	}
-
 	.content {
-		@apply w-2/3 p-4 border-2 border-purple-400 mt-4;
+		@apply w-full p-4 border-2 border-purple-400 mt-4;
 	}
 </style>

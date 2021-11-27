@@ -23,18 +23,45 @@
 </script>
 
 <script lang="ts">
+	import { goto, invalidate } from '$app/navigation';
+	import { page } from '$app/stores';
+
 	export let post: Post;
 
-	let isEditing = false;
-	let draft = post.text;
+	$: isEditing = $page.query.has('editing');
+	$: draft = post.text;
 
 	const toggleEditing = () => {
-		isEditing = !isEditing;
+		if (isEditing) {
+			goto($page.path);
+		} else {
+			goto($page.path + '?editing');
+		}
 	};
 
 	const updatePost = () => {
 		fetch('/echo-chamber/hot-takes/' + post.id, {
-			method: 'PATCH'
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: `text=${draft}`
+		}).then((response) => {
+			if (response.ok) {
+				invalidate(`/echo-chamber/hot-takes/${post.id}`);
+				invalidate(`/echo-chamber/hot-takes`);
+			}
+		});
+	};
+
+	const deletePost = () => {
+		fetch('/echo-chamber/hot-takes/' + post.id, {
+			method: 'DELETE'
+		}).then((response) => {
+			if (response.ok) {
+				invalidate(`/echo-chamber/hot-takes`);
+				goto('/echo-chamber');
+			}
 		});
 	};
 </script>
@@ -43,8 +70,12 @@
 	<header class="flex content-between mb-6">
 		<div class="w-full"><a href="/echo-chamber">&larr; Close</a></div>
 		<div class="w-full flex gap-2 justify-end">
-			<button on:click={toggleEditing} class="small">Edit</button>
-			<form action="/echo-chamber/hot-takes/{post.id}?_method=DELETE" method="post">
+			<div><button on:click={toggleEditing} class="small">Edit</button></div>
+			<form
+				action="/echo-chamber/hot-takes/{post.id}?_method=DELETE"
+				method="post"
+				on:submit|preventDefault={deletePost}
+			>
 				<button class="small danger">Delete</button>
 			</form>
 		</div>
@@ -54,7 +85,12 @@
 		<span class="quote">“</span>{post.text}<span class="quote">”</span>
 	</p>
 	{#if isEditing}
-		<form class="post-edit" method="post" action="/echo-chamber/hot-takes/{post.id}?_method=PATCH">
+		<form
+			class="post-edit"
+			method="post"
+			action="/echo-chamber/hot-takes/{post.id}?_method=PATCH"
+			on:submit|preventDefault={updatePost}
+		>
 			<input type="text" name="text" use:focusOnMount bind:value={draft} />
 			<button>Update</button>
 		</form>

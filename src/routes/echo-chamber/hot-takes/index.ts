@@ -21,8 +21,18 @@ export const get: RequestHandler = async () => {
 	}
 };
 
-export const post = async (request: ServerRequest<Record<string, any>, ReadOnlyFormData>) => {
-	const text = request.body.get('text');
+export const post = async (request: ServerRequest<Record<string, any>>) => {
+	console.log(request.headers);
+
+	let text: string;
+
+	if (typeof request.body === 'string') {
+		text = JSON.parse(request.body).text;
+	} else if (request.body instanceof Uint8Array) {
+		text = JSON.parse(request.body.toString()).text;
+	} else {
+		text = request.body.get('text');
+	}
 
 	const post = await prisma.post.create({
 		data: {

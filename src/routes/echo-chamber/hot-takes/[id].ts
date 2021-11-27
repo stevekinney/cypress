@@ -30,7 +30,6 @@ export const post = async (request: ServerRequest<Record<string, any>, ReadOnlyF
 
 export const patch = async (request: ServerRequest<Record<string, any>, ReadOnlyFormData>) => {
 	console.log(request);
-
 	const text = request.body.get('text');
 
 	const post = await prisma.post.update({
