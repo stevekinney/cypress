@@ -1,5 +1,6 @@
 import { prisma } from '$lib/utilities/database';
 import type { RequestHandler } from '@sveltejs/kit';
+import type { ReadOnlyFormData } from '@sveltejs/kit/types/helper';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const get: RequestHandler = async () => {
@@ -20,7 +21,7 @@ export const get: RequestHandler = async () => {
 	}
 };
 
-export const post: RequestHandler = async (request: ServerRequest<any, FormData>) => {
+export const post = async (request: ServerRequest<Record<string, any>, ReadOnlyFormData>) => {
 	const text = request.body.get('text');
 
 	const post = await prisma.post.create({
@@ -37,6 +38,7 @@ export const post: RequestHandler = async (request: ServerRequest<any, FormData>
 	}
 
 	return {
-		status: 201
+		status: 201,
+		body: { post }
 	};
 };

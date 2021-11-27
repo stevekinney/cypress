@@ -22,35 +22,43 @@
 		@apply text-sm;
 	}
 
-	button {
+	button,
+	a.button {
 		@apply bg-purple-500 border-purple-800 border-2 text-white px-4 py-2;
 	}
 
-	button:hover {
+	button:hover,
+	a.button:hover {
 		@apply bg-purple-600;
 	}
 
-	button:active {
+	button:active,
+	a.button:active {
 		@apply bg-purple-400;
 	}
 
-	button:disabled {
+	button:disabled,
+	a.button:disabled {
 		@apply bg-purple-100 text-purple-400 border-purple-400;
 	}
 
-	button.danger {
+	button.danger,
+	a.button.danger {
 		@apply bg-red-600 border-red-800;
 	}
 
-	button.danger:hover {
+	button.danger:hover,
+	a.button.danger:hover {
 		@apply bg-red-500;
 	}
 
-	button.danger:active {
+	button.danger:active,
+	a.button.danger:active {
 		@apply bg-red-600;
 	}
 
-	button.small {
+	button.small,
+	a.button.small {
 		@apply text-xs px-2 py-0;
 	}
 }

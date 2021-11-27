@@ -26,9 +26,16 @@
 	export let post: Post;
 
 	let isEditing = false;
+	let draft = post.text;
 
 	const toggleEditing = () => {
 		isEditing = !isEditing;
+	};
+
+	const updatePost = () => {
+		fetch('/echo-chamber/hot-takes/' + post.id, {
+			method: 'PATCH'
+		});
 	};
 </script>
 
@@ -37,7 +44,9 @@
 		<div class="w-full"><a href="/echo-chamber">&larr; Close</a></div>
 		<div class="w-full flex gap-2 justify-end">
 			<button on:click={toggleEditing} class="small">Edit</button>
-			<button class="danger small">Delete</button>
+			<form action="/echo-chamber/hot-takes/{post.id}?_method=DELETE" method="post">
+				<button class="small danger">Delete</button>
+			</form>
 		</div>
 	</header>
 	<p>At the exact moment of {post.createdAt}, your deepest thought was…</p>
@@ -45,10 +54,10 @@
 		<span class="quote">“</span>{post.text}<span class="quote">”</span>
 	</p>
 	{#if isEditing}
-		<div class="post-edit">
-			<input type="text" use:focusOnMount value={post.text} />
+		<form class="post-edit" method="post" action="/echo-chamber/hot-takes/{post.id}?_method=PATCH">
+			<input type="text" name="text" use:focusOnMount bind:value={draft} />
 			<button>Update</button>
-		</div>
+		</form>
 	{/if}
 </article>
 
