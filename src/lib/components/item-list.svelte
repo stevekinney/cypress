@@ -5,7 +5,7 @@
 	export let items: Item[];
 </script>
 
-<section class="w-full">
+<section class="w-full" data-test="items-{title.toLowerCase()}">
 	<h1>{title}</h1>
 	<ul>
 		{#each items as item (item.id)}
@@ -17,22 +17,22 @@
 						checked={item.packed}
 						on:change={() => toggle(item.id)}
 					/>
-					{item.title}</label
-				>
-				<button class="small danger" on:click={() => remove(item.id)}>Remove</button>
+					{item.title}
+				</label>
+				<button data-test="remove" class="small" on:click={() => remove(item.id)}>Remove</button>
 			</li>
 		{:else}
-			<p class="font-light text-purple-600">No items to show.</p>
+			<p data-test="items-empty-state" class="font-light text-purple-600">No items to show.</p>
 		{/each}
 	</ul>
 </section>
 
 <style lang="postcss">
 	button {
-		@apply invisible;
+		@apply ml-2 px-0 py-0 text-red-800 bg-white border-none;
 	}
 
-	li:hover button {
-		@apply visible;
+	button:hover {
+		@apply underline bg-white;
 	}
 </style>
