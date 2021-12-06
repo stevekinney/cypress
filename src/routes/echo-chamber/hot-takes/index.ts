@@ -1,6 +1,5 @@
 import { prisma } from '$lib/utilities/database';
 import type { RequestHandler } from '@sveltejs/kit';
-import type { ReadOnlyFormData } from '@sveltejs/kit/types/helper';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const get: RequestHandler = async () => {
