@@ -4,7 +4,8 @@
 
 	let applications = [
 		{ name: 'Jetsetter', path: '/jetsetter', active: false },
-		{ name: 'Echo Chamber', path: '/echo-chamber', active: false }
+		{ name: 'Echo Chamber', path: '/echo-chamber', active: false },
+		{ name: 'Pokémon Seatch', path: '/pokemon-search', active: false }
 	];
 
 	$: {

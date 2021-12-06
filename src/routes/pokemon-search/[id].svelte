@@ -35,6 +35,10 @@
 	export let pokemon;
 </script>
 
+<svelte:head>
+	<title>Pokémon Search - {pokemon.name}</title>
+</svelte:head>
+
 <header>
 	<h1>{pokemon.name}</h1>
 	<ul>

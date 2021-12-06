@@ -1,22 +1,21 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = async ({ fetch, page }) => {
-		const { params } = page;
-		const { id } = params;
+	export const load: Load = async ({ page }) => {
+		const { query } = page;
+		const searchTerm = query.get('name') || '';
 
-		if (!id) {
-			return {
-				redirect: '/pokemon-search/1',
-				status: 302
-			};
-		}
-
-		return {};
+		return {
+			props: { searchTerm }
+		};
 	};
 </script>
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { browser } from '$app/env';
+
 	const emptyData = { pokemon: [] };
 	let controller: AbortController;
 
@@ -37,8 +36,14 @@
 		}
 	};
 
-	let searchTerm = '';
+	export let searchTerm = '';
 	$: results = searchFor(searchTerm);
+	$: {
+		if (searchTerm) {
+			const search = new URLSearchParams({ name: searchTerm });
+			if (browser) goto(`${$page.path}?${search}`, { replaceState: true, keepfocus: true });
+		}
+	}
 </script>
 
 <div class="flex gap-8">
@@ -52,7 +57,7 @@
 			<div class="my-4">
 				{#each pokemon as p}
 					<article>
-						<a href="/pokemon-search/{p.id}" sveltekit:prefetch>{p.name}</a>
+						<a href="/pokemon-search/{p.id}?name={searchTerm}" sveltekit:prefetch>{p.name}</a>
 					</article>
 				{/each}
 			</div>
@@ -62,3 +67,17 @@
 		<slot />
 	</section>
 </div>
+
+<style lang="postcss">
+	a {
+		@apply text-blue-600 underline;
+	}
+
+	a:hover {
+		@apply text-blue-500;
+	}
+
+	a:active {
+		@apply text-blue-400;
+	}
+</style>
