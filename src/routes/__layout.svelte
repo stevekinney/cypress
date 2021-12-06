@@ -5,7 +5,9 @@
 	let applications = [
 		{ name: 'Jetsetter', path: '/jetsetter', active: false },
 		{ name: 'Echo Chamber', path: '/echo-chamber', active: false },
-		{ name: 'Pokémon Seatch', path: '/pokemon-search', active: false }
+		{ name: 'Pokémon Search', path: '/pokemon-search', active: false },
+		{ name: 'Dog Facts', path: '/dog-facts', active: false },
+		{ name: 'Secret Menu', path: '/secret-menu', active: false }
 	];
 
 	$: {
@@ -16,6 +18,10 @@
 		}));
 	}
 </script>
+
+<svelte:head>
+	<title>Pokémon Search</title>
+</svelte:head>
 
 <div class="flex gap-4 min-h-screen">
 	<nav id="table-of-contents">
