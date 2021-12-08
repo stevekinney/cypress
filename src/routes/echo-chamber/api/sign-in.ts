@@ -25,7 +25,5 @@ export const post = async (request) => {
 		}
 	});
 
-	console.log({ user, email, password });
-
 	return respond({ user });
 };
