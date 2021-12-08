@@ -11,10 +11,6 @@
 </script>
 
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import { browser } from '$app/env';
-
 	export let numberOfFacts: number = 3;
 	let facts: DogFact[] = [];
 
@@ -23,15 +19,6 @@
 			.then((response) => response.json())
 			.then((response) => (facts = response.facts));
 	};
-
-	$: {
-		if (browser) {
-			goto($page.path + '?' + new URLSearchParams({ amount: numberOfFacts.toString() }), {
-				replaceState: true,
-				keepfocus: true
-			});
-		}
-	}
 </script>
 
 <svelte:head>
@@ -48,22 +35,26 @@
 			id="number-of-facts"
 			class="block my-2 p-2 w-80 border-2 border-purple-700"
 			bind:value={numberOfFacts}
+			data-test="amount-select"
 		>
 			{#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as number}
 				<option value={number}>{number} {number === 1 ? 'Fact' : 'Facts'}</option>
 			{/each}
 		</select>
-		<button>Fetch</button>
+		<button data-test="fetch-button">Fetch</button>
+		<button class="secondary" data-test="clear-button" on:click|preventDefault={() => (facts = [])}
+			>Clear</button
+		>
 	</form>
 
 	<section id="facts">
 		{#each facts as fact}
-			<article class="my-4 p-4 border-4 border-purple-600">
+			<article class="my-4 p-4 border-4 border-purple-600" data-test="dog-fact">
 				<h2>Dog Fact #{fact.id}</h2>
 				<p>{fact.fact}</p>
 			</article>
 		{:else}
-			<p class="text-center p-4 my-4">Fetch some dog facts or something.</p>
+			<p class="text-center p-4 my-4" data-test="empty-state">Fetch some dog facts or something.</p>
 		{/each}
 	</section>
 </div>

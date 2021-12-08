@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
+	export const ssr = true;
+
 	export const load: Load = async ({ fetch }) => {
 		const { data }: SecretMenuItemAPIResponse = await fetch('/secret-menu/api').then((response) =>
 			response.json()
@@ -64,7 +66,11 @@
 </svelte:head>
 
 <header class="my-4">
-	<h1>Secret Menu Items (<a href={asCSV} download="secret-menu-items">Download</a>)</h1>
+	<h1>
+		Secret Menu Items (<a href={asCSV} download="secret-menu-items" data-test="download-link"
+			>Download</a
+		>)
+	</h1>
 </header>
 
 <div class="flex gap-6 my-4">
@@ -81,8 +87,8 @@
 	</section>
 
 	<section id="restaurant-visibility">
-		<label for="restaurant-visibility" class="block">Restaurant</label>
-		<select id="restaurant-visibility" bind:value={restuarant} class="block">
+		<label for="restaurant-visibility-filter" class="block">Restaurant</label>
+		<select id="restaurant-visibility-filter" bind:value={restuarant} class="block">
 			<option value={null}>All</option>
 			{#each restaurants as r}
 				<option value={r}>{r}</option>
@@ -165,41 +171,41 @@
 	<table class="w-full">
 		<thead>
 			<tr>
-				<th id="name" class:hidden={!name}>Name</th>
-				<th id="whereToOrder" class:hidden={!whereToOrder}>Where to Order</th>
-				<th id="description" class:hidden={!description}>Description</th>
-				<th id="secret" class:hidden={!secret}>The Secret</th>
-				<th id="ingredients" class:hidden={!ingredients}>Ingredients</th>
-				<th id="popularity" class:hidden={!popularity}>Popularity</th>
-				<th id="price" class:hidden={!price}>Price</th>
-				<th id="howToOrder" class:hidden={!howToOrder}>How to Order</th>
+				<th id="name-column" class:hidden={!name}>Name</th>
+				<th id="whereToOrder-column" class:hidden={!whereToOrder}>Where to Order</th>
+				<th id="description-column" class:hidden={!description}>Description</th>
+				<th id="secret-column" class:hidden={!secret}>The Secret</th>
+				<th id="ingredients-column" class:hidden={!ingredients}>Ingredients</th>
+				<th id="popularity-column" class:hidden={!popularity}>Popularity</th>
+				<th id="price-column" class:hidden={!price}>Price</th>
+				<th id="howToOrder-column" class:hidden={!howToOrder}>How to Order</th>
 			</tr>
 		</thead>
 		<tbody>
 			{#each visible as datum}
 				<tr>
-					<td headers="name" class="name" class:hidden={!name}
-						><div class="cell"><a href={datum.sourceUrl}> {datum.name} </a></div></td
+					<td headers="name-column" class="name" class:hidden={!name}
+						><div class="cell"><a href={datum.sourceUrl}>{datum.name}</a></div></td
 					>
-					<td headers="whereToOrder" class="whereToOrder" class:hidden={!whereToOrder}
+					<td headers="whereToOrder-column" class="whereToOrder" class:hidden={!whereToOrder}
 						><div class="cell">{datum.whereToOrder}</div></td
 					>
-					<td headers="description" class="description" class:hidden={!description}
+					<td headers="description-column" class="description" class:hidden={!description}
 						><div class="cell">{datum.description}</div></td
 					>
-					<td headers="secret" class="secret" class:hidden={!secret}
+					<td headers="secret-column" class="secret" class:hidden={!secret}
 						><div class="cell">{datum.secret}</div></td
 					>
-					<td headers="ingredients" class="ingredients" class:hidden={!ingredients}
+					<td headers="ingredients-column" class="ingredients" class:hidden={!ingredients}
 						><div class="cell">{datum.ingredients}</div></td
 					>
-					<td headers="popularity" class="popularity" class:hidden={!popularity}
+					<td headers="popularity-column" class="popularity" class:hidden={!popularity}
 						><div class="cell">{datum.popularity}</div></td
 					>
-					<td headers="price" class="price" class:hidden={!price}
+					<td headers="price-column" class="price" class:hidden={!price}
 						><div class="cell">{datum.price}</div></td
 					>
-					<td headers="howToOrder" class="howToOrder" class:hidden={!howToOrder}
+					<td headers="howToOrder-column" class="howToOrder" class:hidden={!howToOrder}
 						><div class="cell">{datum.howToOrder}</div></td
 					>
 				</tr>

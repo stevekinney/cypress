@@ -2,7 +2,7 @@
 
 describe('Basic Practice', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/jetsetter');
+		cy.visit('/jetsetter');
 	});
 
 	describe('Adding a new item', () => {

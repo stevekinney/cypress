@@ -2,7 +2,7 @@
 
 describe('Aliases', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/jetsetter');
+		cy.visit('/jetsetter');
 		cy.get('[data-test="items-unpacked"]').as('unpackedItems');
 		cy.get('[data-test="items-packed"]').as('packedItems');
 	});

@@ -2,7 +2,7 @@
 
 describe.skip('Create a New Item', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/jetsetter');
+		cy.visit('/jetsetter');
 	});
 
 	it('should have a form', () => {

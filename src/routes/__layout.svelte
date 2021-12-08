@@ -19,10 +19,6 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Pokémon Search</title>
-</svelte:head>
-
 <div class="flex gap-4 min-h-screen">
 	<nav id="table-of-contents">
 		<h3>Applications</h3>

@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('waitForApp', () => {
+	return cy.wrap(
+		new Promise((resolve) => {
+			cy.window().then((win) => {
+				win.addEventListener('sveltekit:start', resolve);
+			});
+		})
+	);
+});

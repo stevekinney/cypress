@@ -46,6 +46,21 @@
 		@apply text-purple-400 bg-purple-100 border-purple-400;
 	}
 
+	button.secondary,
+	a.button.secondary {
+		@apply text-purple-800 bg-white;
+	}
+
+	button.secondary:hover,
+	a.button.secondary:hover {
+		@apply bg-purple-100;
+	}
+
+	button.secondary:active,
+	a.button.secondary:active {
+		@apply bg-purple-200;
+	}
+
 	button.danger,
 	a.button.danger {
 		@apply bg-red-600 border-red-800;

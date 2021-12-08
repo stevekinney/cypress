@@ -12,14 +12,19 @@
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/env';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { browser } from '$app/env';
+
+	export let searchTerm = '';
 
 	const emptyData = { pokemon: [] };
 	let controller: AbortController;
 
-	const searchFor = async (name: string) => {
+	let timer: ReturnType<typeof setTimeout>;
+	let hasSearched = false;
+
+	const searchFor = async (name: string): Promise<PokemonAPIResponse> => {
 		if (!name) return emptyData;
 		if (controller) controller.abort();
 
@@ -36,29 +41,57 @@
 		}
 	};
 
-	export let searchTerm = '';
-	$: results = searchFor(searchTerm);
-	$: {
-		if (searchTerm) {
-			const search = new URLSearchParams({ name: searchTerm });
-			if (browser) goto(`${$page.path}?${search}`, { replaceState: true, keepfocus: true });
-		}
-	}
+	const updateSearchTerm = (event: KeyboardEvent) => {
+		const value = (event.target as HTMLInputElement).value;
+		searchTerm = value;
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			hasSearched = true;
+			if (searchTerm) {
+				results = searchFor(searchTerm);
+				const search = new URLSearchParams({ name: searchTerm });
+				if (browser) goto(`${$page.path}?${search}`, { replaceState: true, keepfocus: true });
+			}
+		}, 300);
+	};
+
+	let results = searchFor(searchTerm);
 </script>
+
+<svelte:head>
+	<title>Pokémon Search</title>
+</svelte:head>
 
 <div class="flex gap-8">
 	<section class="w-1/3">
-		<h1 class="text-xl">Pokemon Search</h1>
-		<input class="w-full" type="search" placeholder="Search Pokémon…" bind:value={searchTerm} />
-		<p><strong>Searching for…</strong> {searchTerm}</p>
+		<h1 class="text-xl">Pokémon Search</h1>
+		<input
+			id="search"
+			data-test="search"
+			class="w-full"
+			type="search"
+			placeholder="Search Pokémon…"
+			value={searchTerm}
+			on:keyup={updateSearchTerm}
+		/>
+		<label for="search" data-test="search-label"><strong>Searching for…</strong> {searchTerm}</label
+		>
 		{#await results}
-			<p>Loading…</p>
+			<p data-test="loading-state">Loading…</p>
 		{:then { pokemon }}
-			<div class="my-4">
+			<div class="my-4" data-test="results">
 				{#each pokemon as p}
-					<article>
-						<a href="/pokemon-search/{p.id}?name={searchTerm}" sveltekit:prefetch>{p.name}</a>
+					<article data-test="result">
+						<a
+							href="/pokemon-search/{p.id}?name={searchTerm}"
+							sveltekit:prefetch
+							data-test-id={p.id}>{p.name}</a
+						>
 					</article>
+				{:else}
+					{#if hasSearched}
+						<div class="empty-state" data-test="empty-state">No Pokémon match that query.</div>
+					{/if}
 				{/each}
 			</div>
 		{/await}
