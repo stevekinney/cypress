@@ -11,7 +11,24 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  text      String
+  id       Int     @id @default(autoincrement())
+  content  String?
+  title    String
+  authorId Int?
+  author   User?   @relation(fields: [authorId], references: [id])
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String?
+  posts    Post[]
+  profiles Profile[]
 }
