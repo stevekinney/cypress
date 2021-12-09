@@ -42,12 +42,12 @@
 	<p>A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
 </header>
 
-<nav class="flex justify-between mb-8 pb-4 border-b-4 border-purple-900">
+<nav class="mb-8 pb-4 border-b-4 border-purple-900">
 	{#if user}
-		<div data-test="current-user">
+		<span data-test="current-user" class="flex justify-between">
 			<p>Signed in as <strong data-test="current-user-email">{user.email}</strong></p>
 			<button on:click={signOut} class="danger" data-test="sign-out">Sign Out</button>
-		</div>
+		</span>
 	{:else}
 		<div class="flex gap-2">
 			<a
