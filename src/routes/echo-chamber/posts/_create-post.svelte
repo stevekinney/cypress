@@ -42,6 +42,7 @@
 	class="bg-purple-200 p-4 border-2 border-purple-400 w-full h-36 flex flex-col justify-around"
 	action={endpoint}
 	method="post"
+	data-test="post-create-form"
 	on:submit|preventDefault={createPost}
 >
 	<input type="hidden" id="user" name="authorId" value={user.id} />
@@ -51,7 +52,8 @@
 		name="content"
 		aria-label="New Post"
 		required
+		data-test="post-create-content-input"
 		placeholder="What if your hottest take?"
 	/>
-	<button class="w-full">Post</button>
+	<button type="submit" class="w-full" data-test="post-create-submit">Post</button>
 </form>

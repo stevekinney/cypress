@@ -22,7 +22,7 @@
 </script>
 
 <script lang="ts">
-	import { session } from '$app/stores';
+	import { page, session } from '$app/stores';
 	import { post } from '$lib/utilities/post';
 
 	export let user: User;
@@ -44,12 +44,22 @@
 
 <nav class="flex justify-between mb-8 pb-4 border-b-4 border-purple-900">
 	{#if user}
-		<p>Signed in as <strong>{user.email}</strong></p>
-		<button on:click={signOut} class="danger">Sign Out</button>
+		<div data-test="current-user">
+			<p>Signed in as <strong data-test="current-user-email">{user.email}</strong></p>
+			<button on:click={signOut} class="danger" data-test="sign-out">Sign Out</button>
+		</div>
 	{:else}
 		<div class="flex gap-2">
-			<a href="/echo-chamber/sign-in">Sign In</a>
-			<a href="/echo-chamber/sign-up">Sign Up</a>
+			<a
+				href="/echo-chamber/sign-in"
+				data-test="sign-in"
+				class:active={$page.path.endsWith('sign-in')}>Sign In</a
+			>
+			<a
+				href="/echo-chamber/sign-up"
+				data-test="sign-up"
+				class:active={$page.path.endsWith('sign-up')}>Sign Up</a
+			>
 		</div>
 	{/if}
 </nav>
@@ -59,6 +69,10 @@
 <style lang="postcss">
 	nav a {
 		@apply block p-2 text-purple-700 border-b-4 border-purple-900;
+	}
+
+	nav a.active {
+		@apply block p-2 text-purple-700 bg-purple-400 border-b-4 border-purple-900;
 	}
 
 	nav a:hover {

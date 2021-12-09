@@ -29,8 +29,8 @@
 	import { page } from '$app/stores';
 
 	export let post: Post;
-	let draft = post.content;
 
+	$: draft = post.content;
 	$: isEditing = $page.query.has('editing');
 
 	const updatePost = () => {
@@ -60,39 +60,56 @@
 	};
 </script>
 
-<article class="post-detail" id="post-detail-{post.id}">
+<article class="post-detail" id="post-detail-{post.id}" data-test="post-detail">
 	<header class="flex content-between mb-6">
-		<div class="w-full"><a href="/echo-chamber/posts" sveltekit:noscroll>&larr; Close</a></div>
+		<div class="w-full">
+			<a href="/echo-chamber/posts" data-test="post-detail-back-arrow" sveltekit:noscroll
+				>&larr; Close</a
+			>
+		</div>
 		<div class="w-full flex gap-2 justify-end">
-			<div>
+			<div data-test="post-detail-controls">
 				{#if !isEditing}
-					<a class="button small" href="{$page.path}?editing" sveltekit:noscroll>Edit</a>
+					<a
+						class="button small"
+						href="{$page.path}?editing"
+						sveltekit:noscroll
+						data-test="post-detail-controls-edit-button">Edit</a
+					>
 				{:else}
-					<a class="button small" href={$page.path}>Cancel</a>
+					<a class="button small" href={$page.path} data-test="post-detail-controls-cancel-button"
+						>Cancel</a
+					>
 				{/if}
 			</div>
 			<form
 				action="/echo-chamber/posts/{post.id}?_method=DELETE"
 				method="post"
 				on:submit|preventDefault={deletePost}
+				data-test="post-detail-controls-delete-button"
 			>
 				<button class="small danger">Delete</button>
 			</form>
 		</div>
 	</header>
-	<p>At the exact moment of {post.createdAt}, {post.author.email}'s deepest thought was…</p>
+	<p data-test="post-detail-metadata">
+		At the exact moment of {post.createdAt}, {post.author.email}'s deepest thought was…
+	</p>
 	<p class="text-center text-4xl my-4 font-serif italic">
-		<span class="quote">“</span>{post.content}<span class="quote">”</span>
+		<span class="quote">“</span>
+		<span data-test="post-detail-content">{post.content}</span>
+		<span class="quote">”</span>
 	</p>
 	{#if isEditing}
 		<form
 			class="post-edit"
 			method="post"
 			action="/echo-chamber/api/{post.id}?_method=PATCH"
+			data-test="post-detail-edit-form"
 			on:submit|preventDefault={updatePost}
 		>
-			<input type="text" name="text" use:focusOnMount bind:value={draft} />
-			<button>Update</button>
+			<input type="text" name="text" use:focusOnMount bind:value={draft} data-test="post-detail-draft-content" />
+			<button type="submit" data-test="post-detail-edit-submit">Update</button>
 		</form>
 	{/if}
 </article>

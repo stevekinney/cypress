@@ -29,7 +29,7 @@
 </script>
 
 <script lang="ts">
-	import HotTake from '$lib/components/post.svelte';
+	import PostPreview from './_post.svelte';
 	import CreatePost from './_create-post.svelte';
 
 	export let posts: Post[];
@@ -41,9 +41,9 @@
 	<div class="content col-span-2 row-span-2">
 		<slot />
 	</div>
-	<section id="posts" class="flex flex-col gap-2">
+	<section id="posts" class="flex flex-col gap-2" data-test="post-preview-list">
 		{#each posts as post (post.id)}
-			<HotTake {post} />
+			<PostPreview {post} />
 		{/each}
 	</section>
 </div>

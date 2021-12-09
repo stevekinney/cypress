@@ -1,14 +1,21 @@
 <h2>Sign Up</h2>
 
-<form on:submit action="/echo-chamber/api/sign-up" method="post">
-	<label for="email">Email Address</label><input type="email" name="email" id="email" required />
+<form on:submit action="/echo-chamber/api/sign-up" method="post" data-test="sign-up-form">
+	<label for="email">Email Address</label><input
+		type="email"
+		name="email"
+		id="email"
+		data-test="sign-up-email"
+		required
+	/>
 	<label for="password">Password</label><input
 		type="password"
 		name="password"
 		id="password"
+		data-test="sign-up-password"
 		required
 	/>
-	<button type="submit">Sign Up</button>
+	<button type="submit" data-test="sign-up-submit">Sign Up</button>
 </form>
 
 <style lang="postcss">
