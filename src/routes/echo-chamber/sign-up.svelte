@@ -12,6 +12,7 @@
 		type="password"
 		name="password"
 		id="password"
+		minlength="4"
 		data-test="sign-up-password"
 		required
 	/>

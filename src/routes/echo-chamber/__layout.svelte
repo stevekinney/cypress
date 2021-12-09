@@ -38,8 +38,8 @@
 </svelte:head>
 
 <header class="mb-4 lg:mb-8">
-	<h1><a href="/echo-chamber">Echo Chamber</a></h1>
-	<p>A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
+	<h1 data-test="application-title"><a href="/echo-chamber">Echo Chamber</a></h1>
+	<p data-test="application-blurb">A safe place to talk to yourself. Because the thoughts aren't going to lead themselves.</p>
 </header>
 
 <nav class="mb-8 pb-4 border-b-4 border-purple-900">

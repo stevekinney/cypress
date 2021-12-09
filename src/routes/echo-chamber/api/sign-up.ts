@@ -1,5 +1,4 @@
 import { prisma } from '$lib/utilities/database';
-import { respond } from './_respond';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const post = async (request: ServerRequest<Record<string, any>>) => {
