@@ -14,6 +14,9 @@
 		"db:setup": "prisma db push",
 		"postinstall": "npm run db:setup"
 	},
+	"prisma": {
+		"seed": "node prisma/clear.cjs"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
