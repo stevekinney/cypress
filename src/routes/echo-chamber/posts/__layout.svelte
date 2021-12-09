@@ -4,10 +4,11 @@
 	export const load: Load = async ({ fetch, session }) => {
 		const endpoint = '/echo-chamber/api';
 		const response = await fetch(endpoint);
+		const { user } = session;
 
-		if (!session.user) {
+		if (!user) {
 			return {
-				redirect: '/echo-chamber',
+				redirect: '/echo-chamber/sign-in',
 				status: 302
 			};
 		}
@@ -15,8 +16,8 @@
 		if (response.ok) {
 			const { posts } = await response.json();
 			return {
-				props: { posts },
-				stuff: { posts }
+				props: { posts, user },
+				stuff: { posts, user }
 			};
 		}
 
@@ -32,10 +33,11 @@
 	import CreatePost from './_create-post.svelte';
 
 	export let posts: Post[];
+	export let user: User;
 </script>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
-	<CreatePost />
+	<CreatePost {user} />
 	<div class="content col-span-2 row-span-2">
 		<slot />
 	</div>

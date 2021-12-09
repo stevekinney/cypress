@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { goto, invalidate } from '$app/navigation';
+	const endpoint = '/echo-chamber/api';
+
+	export let user: User;
 
 	const createPost = (event) => {
 		const form: HTMLFormElement = event.target;
@@ -10,7 +13,7 @@
 			data[key] = value;
 		}
 
-		fetch('/echo-chamber/hot-takes', {
+		fetch(endpoint, {
 			method: 'POST',
 			headers: {
 				accept: 'application/json'
@@ -26,10 +29,10 @@
 				return response.post;
 			})
 			.then((post) => {
-				return goto(`/echo-chamber/${post.id}`);
+				return goto(`/echo-chamber/posts/${post.id}`);
 			})
 			.then(() => {
-				return invalidate('/echo-chamber/hot-takes');
+				return invalidate(endpoint);
 			});
 	};
 </script>
@@ -37,13 +40,15 @@
 <form
 	id="new-post"
 	class="bg-purple-200 p-4 border-2 border-purple-400 w-full h-36 flex flex-col justify-around"
-	action="/echo-chamber/hot-takes"
+	action={endpoint}
 	method="post"
 	on:submit|preventDefault={createPost}
 >
+	<input type="hidden" id="user" name="authorId" value={user.id} />
 	<input
+		id="content"
 		class="w-full mb-2"
-		name="text"
+		name="content"
 		aria-label="New Post"
 		required
 		placeholder="What if your hottest take?"

@@ -10,6 +10,7 @@ export async function handle({ request, resolve }) {
 export function getSession({ locals }) {
 	return {
 		user: locals.user && {
+			id: +locals.user.id,
 			email: locals.user.email
 		}
 	};

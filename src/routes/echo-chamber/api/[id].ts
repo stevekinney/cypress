@@ -4,9 +4,14 @@ import type { ReadOnlyFormData } from '@sveltejs/kit/types/helper';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const get: RequestHandler = async (request) => {
+	if (request.query.get('_method')?.toLowerCase() === 'delete') return del(request);
+
 	const post = await prisma.post.findUnique({
 		where: {
 			id: +request.params.id
+		},
+		include: {
+			author: true
 		}
 	});
 
@@ -42,7 +47,7 @@ export const patch = async (request: ServerRequest<Record<string, any>, ReadOnly
 
 	if (request.headers.accept !== 'application/json') {
 		return {
-			headers: { Location: `/echo-chamber/${post.id}` },
+			headers: { Location: `/echo-chamber/posts/${post.id}` },
 			status: 303
 		};
 	}
@@ -56,6 +61,8 @@ export const patch = async (request: ServerRequest<Record<string, any>, ReadOnly
 export const del: RequestHandler = async (request) => {
 	const id = +request.params.id;
 
+	console.log('Delete');
+
 	await prisma.post.delete({
 		where: {
 			id
@@ -64,7 +71,7 @@ export const del: RequestHandler = async (request) => {
 
 	if (request.method.toLowerCase() === 'post') {
 		return {
-			headers: { Location: '/echo-chamber' },
+			headers: { Location: '/echo-chamber/posts' },
 			status: 303
 		};
 	}

@@ -5,9 +5,3 @@ type Item = {
 	title: string;
 	packed: boolean;
 };
-
-type Post = {
-	text: string;
-	id: number;
-	createdAt: string;
-};

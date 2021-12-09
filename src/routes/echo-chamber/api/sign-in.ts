@@ -1,10 +1,7 @@
 import { prisma } from '$lib/utilities/database';
 import { respond } from './_respond';
-import type { RequestHandler } from '@sveltejs/kit';
-import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const post = async (request) => {
-	console.log('hi');
 	let email: string;
 	let password: string;
 
@@ -24,6 +21,20 @@ export const post = async (request) => {
 			email
 		}
 	});
+
+	if (!user) {
+		return {
+			headers: { Location: `/echo-chamber/sign-in?error=No+such+user+exists` },
+			status: 303
+		};
+	}
+
+	if (user.password !== password) {
+		return {
+			headers: { Location: `/echo-chamber/sign-in?error=Incorrect+password` },
+			status: 303
+		};
+	}
 
 	return respond({ user });
 };

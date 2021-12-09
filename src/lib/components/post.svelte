@@ -6,12 +6,12 @@
 	$: active = +$page.params.id === post.id;
 </script>
 
-<a href="/echo-chamber/{post.id}">
+<a href="/echo-chamber/posts/{post.id}" sveltekit:noscroll>
 	<article id="post-{post.id}" class="post" class:active>
-		<p class="post-content">{post.text}</p>
+		<p class="post-content">{post.content}</p>
 		<footer class="post-controls">
 			<p class="post-metadata">
-				— Me, {post.createdAt}
+				— {post?.author?.email}, {post.createdAt}
 			</p>
 		</footer>
 	</article>

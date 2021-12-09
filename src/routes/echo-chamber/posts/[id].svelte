@@ -3,7 +3,7 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = async ({ page, fetch }) => {
-		const endpoint = `/echo-chamber/hot-takes/${page.params.id}`;
+		const endpoint = `/echo-chamber/api/${page.params.id}`;
 		const editing = page.query.has('editing');
 		const res = await fetch(endpoint);
 
@@ -29,32 +29,32 @@
 	import { page } from '$app/stores';
 
 	export let post: Post;
-	let draft = post.text;
+	let draft = post.content;
 
 	$: isEditing = $page.query.has('editing');
 
 	const updatePost = () => {
-		fetch('/echo-chamber/hot-takes/' + post.id, {
+		fetch('/echo-chamber/api/' + post.id, {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
-			body: `text=${draft}`
+			body: `content=${draft}`
 		}).then((response) => {
 			if (response.ok) {
-				invalidate(`/echo-chamber/hot-takes/${post.id}`);
-				invalidate(`/echo-chamber/hot-takes`);
+				invalidate(`/echo-chamber/api/${post.id}`);
+				invalidate(`/echo-chamber/api`);
 			}
 		});
 	};
 
 	const deletePost = () => {
-		fetch('/echo-chamber/hot-takes/' + post.id, {
+		fetch('/echo-chamber/api/' + post.id, {
 			method: 'DELETE'
 		}).then((response) => {
 			if (response.ok) {
-				invalidate(`/echo-chamber/hot-takes`);
-				goto('/echo-chamber');
+				invalidate(`/echo-chamber/api`);
+				goto('/echo-chamber/posts');
 			}
 		});
 	};
@@ -62,17 +62,17 @@
 
 <article class="post-detail" id="post-detail-{post.id}">
 	<header class="flex content-between mb-6">
-		<div class="w-full"><a href="/echo-chamber">&larr; Close</a></div>
+		<div class="w-full"><a href="/echo-chamber/posts" sveltekit:noscroll>&larr; Close</a></div>
 		<div class="w-full flex gap-2 justify-end">
 			<div>
 				{#if !isEditing}
-					<a class="button small" href="{$page.path}?editing">Edit</a>
+					<a class="button small" href="{$page.path}?editing" sveltekit:noscroll>Edit</a>
 				{:else}
 					<a class="button small" href={$page.path}>Cancel</a>
 				{/if}
 			</div>
 			<form
-				action="/echo-chamber/hot-takes/{post.id}?_method=DELETE"
+				action="/echo-chamber/posts/{post.id}?_method=DELETE"
 				method="post"
 				on:submit|preventDefault={deletePost}
 			>
@@ -80,15 +80,15 @@
 			</form>
 		</div>
 	</header>
-	<p>At the exact moment of {post.createdAt}, your deepest thought was…</p>
+	<p>At the exact moment of {post.createdAt}, {post.author.email}'s deepest thought was…</p>
 	<p class="text-center text-4xl my-4 font-serif italic">
-		<span class="quote">“</span>{post.text}<span class="quote">”</span>
+		<span class="quote">“</span>{post.content}<span class="quote">”</span>
 	</p>
 	{#if isEditing}
 		<form
 			class="post-edit"
 			method="post"
-			action="/echo-chamber/hot-takes/{post.id}?_method=PATCH"
+			action="/echo-chamber/api/{post.id}?_method=PATCH"
 			on:submit|preventDefault={updatePost}
 		>
 			<input type="text" name="text" use:focusOnMount bind:value={draft} />
