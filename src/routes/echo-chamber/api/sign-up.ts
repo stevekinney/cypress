@@ -31,5 +31,16 @@ export const post = async (request: ServerRequest<Record<string, any>>) => {
 		};
 	}
 
-	return respond({ user });
+	return {
+		status: 302,
+		headers: {
+			Location: '/echo-chamber'
+		},
+		body: {
+			user: {
+				id: user.id,
+				email: user.email
+			}
+		}
+	};
 };
