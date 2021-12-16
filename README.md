@@ -10,7 +10,7 @@ npm install
 
 Next, set up the database.
 
-If you don't want to install Postgres, you can spin up a [Docker][] container using `docker-compose up`.
+The easiest wayto set up Postgres, you can spin up a [Docker][] container using `docker-compose up`. (Note: If you choose _not_ use Docker, you'll need to change the username and password in `.env` to the username and password of your locally-hosted Postgres database.
 
 ```
 docker-compose up
