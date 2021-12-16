@@ -2,6 +2,7 @@ import { prisma } from '$lib/utilities/database';
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 
 export const post = async (request: ServerRequest<Record<string, any>>) => {
+	let user;
 	let email: string;
 	let password: string;
 
@@ -16,16 +17,23 @@ export const post = async (request: ServerRequest<Record<string, any>>) => {
 		password = request.body.get('password');
 	}
 
-	const user = await prisma.user.create({
-		data: {
-			email,
-			password
-		}
-	});
+	try {
+		user = await prisma.user.create({
+			data: {
+				email,
+				password
+			}
+		});
+	} catch (error) {
+		return {
+			headers: { Location: `/echo-chamber/sign-up?error=A+user+already+exists+with+that+email.` },
+			status: 303
+		};
+	}
 
 	if (!user) {
 		return {
-			headers: { Location: `/echo-chamber/sign-in?error=No+such+user+exists` },
+			headers: { Location: `/echo-chamber/sign-up?error=No+such+user+exists.` },
 			status: 303
 		};
 	}

@@ -10,6 +10,8 @@ async function main() {
 	console.log('All data has been cleared!');
 }
 
+module.exports = main;
+
 main()
 	.catch((e) => {
 		console.error(e);

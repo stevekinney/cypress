@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-const { WatchDirectoryFlags } = require('typescript');
-
 const restaurants = [
 	'Chick-fil-A',
 	'McDonalds',
@@ -84,20 +82,5 @@ describe('Secret Menu Items', () => {
 				});
 			});
 		}
-	});
-
-	describe.only('Ratings Filter with SSR', () => {
-		beforeEach(() => {
-			cy.visit('/secret-menu');
-			cy.get('#minimum-rating-visibility').as('rating-filter');
-			return cy.waitForApp();
-		});
-
-		it('should wait for a the app to start up', () => {
-			cy.get('@rating-filter').invoke('val', 7).trigger('change');
-			cy.get('td[headers="popularity-column"]').each(($el) => {
-				expect(+$el.text()).to.be.gte(7);
-			});
-		});
 	});
 });

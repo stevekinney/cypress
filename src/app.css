@@ -18,7 +18,8 @@
 		@apply text-purple-800 font-semibold;
 	}
 
-	input {
+	input,
+	select {
 		@apply p-2 border-2 border-purple-800;
 	}
 

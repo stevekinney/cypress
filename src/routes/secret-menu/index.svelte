@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit';
 
-	export const ssr = true;
+	export const ssr = false;
 
 	export const load: Load = async ({ fetch }) => {
 		const { data }: SecretMenuItemAPIResponse = await fetch('/secret-menu/api').then((response) =>

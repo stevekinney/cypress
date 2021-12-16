@@ -33,3 +33,21 @@ Cypress.Commands.add('waitForApp', () => {
 		})
 	);
 });
+
+Cypress.Commands.add('getData', (attribute) => {
+	return cy.get(`[data-test="${attribute}"]`);
+});
+
+Cypress.Commands.add('login', (user) => {
+	cy.visit('/echo-chamber/sign-in');
+	cy.getData('sign-in-email').type(user.email);
+	cy.getData('sign-in-password').type(user.password);
+	cy.getData('sign-in-submit').click();
+});
+
+Cypress.Commands.add('signUp', (user) => {
+	cy.visit('/echo-chamber/sign-up');
+	cy.getData('sign-up-email').type(user.email);
+	cy.getData('sign-up-password').type(user.password);
+	cy.getData('sign-up-submit').click();
+});

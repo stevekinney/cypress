@@ -48,6 +48,8 @@ async function main() {
 	});
 }
 
+module.exports = main;
+
 main()
 	.catch((e) => {
 		console.error(e);

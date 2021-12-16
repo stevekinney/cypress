@@ -2,6 +2,7 @@
 
 describe('Initial Page', () => {
 	beforeEach(() => {
+		cy.task('reset');
 		cy.visit('/echo-chamber');
 	});
 
@@ -32,8 +33,9 @@ describe('Initial Page', () => {
 	});
 });
 
-describe.only('Sign Up', () => {
+describe('Sign Up', () => {
 	beforeEach(() => {
+		cy.task('reset');
 		cy.visit('/echo-chamber/sign-up');
 	});
 
@@ -76,19 +78,6 @@ describe.only('Sign Up', () => {
 		cy.get('[data-test="sign-up-password"]:invalid')
 			.invoke('prop', 'validity')
 			.its('valueMissing')
-			.should('be.true');
-	});
-
-	it.only('should require that password be at least 4 characters in lengther', () => {
-		cy.get('[data-test="sign-up-email"]').type('valid@email.com');
-		cy.get('[data-test="sign-up-password"]').type('lol');
-		cy.get('[data-test="sign-up-submit"]').click();
-
-		cy.get('[data-test="sign-up-password"]:invalid').should('have.length', 1);
-
-		cy.get('[data-test="sign-up-password"]')
-			.invoke('prop', 'validity')
-			.its('tooShort')
 			.should('be.true');
 	});
 });

@@ -4,6 +4,7 @@
 
 	let applications = [
 		{ name: 'Jetsetter', path: '/jetsetter', active: false },
+		{ name: 'Input Obstacle Course', path: '/obstacle-course', active: false },
 		{ name: 'Echo Chamber', path: '/echo-chamber', active: false },
 		{ name: 'Pokémon Search', path: '/pokemon-search', active: false },
 		{ name: 'Dog Facts', path: '/dog-facts', active: false },

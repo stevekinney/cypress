@@ -3,8 +3,8 @@ export function respond(body: any) {
 		return { status: 401, body };
 	}
 
-	const { user } = body;
-	const json = JSON.stringify(user);
+	const { id, email } = body.user;
+	const json = JSON.stringify({ id, email });
 	const value = Buffer.from(json).toString('base64');
 
 	return {
