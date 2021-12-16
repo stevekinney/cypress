@@ -21,7 +21,7 @@ If you have trouble with Docker and/or Postgres, you can go to `prisma/schema.pr
 Once Postgres is running, you can push up your database schema.
 
 ```
-npm run db:push
+npm run db:setup
 ```
 
 Finally, spin up the server.
