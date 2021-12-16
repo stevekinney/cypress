@@ -24,7 +24,7 @@ Once Postgres is running, you can push up your database schema.
 npm run db:push
 ```
 
-Finally, spin up the server
+Finally, spin up the server.
 
 ```
 npm start
@@ -32,7 +32,7 @@ npm start
 
 ## Running the Tests
 
-You can run the tests using the following command:
+You can run the tests using the following command. **Note**: You must have completed the following steps and have the server up and running.
 
 ```
 npx cypress open
