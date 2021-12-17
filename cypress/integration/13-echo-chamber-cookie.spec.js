@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import '../support/commands-complete';
+
 const user = {
 	email: 'first@example.com',
 	password: 'password123'
