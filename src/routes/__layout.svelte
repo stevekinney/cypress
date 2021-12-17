@@ -26,7 +26,7 @@
 		<h3>Applications</h3>
 		<ul>
 			{#each applications as application}
-				<li>
+				<li class="mb-4">
 					<a href={application.path} class:active={application.active}>{application.name}</a>
 				</li>
 			{/each}
@@ -40,7 +40,7 @@
 
 <style lang="postcss">
 	nav {
-		@apply p-8 w-48 min-h-screen text-white bg-purple-900 border-r-4 border-purple-400;
+		@apply p-8 w-56 min-h-screen text-white bg-purple-900 border-r-4 border-purple-400;
 	}
 
 	h3 {
