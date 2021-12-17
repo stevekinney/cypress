@@ -1,11 +1,11 @@
 <script context="module">
-	export const ssr = false;
+  export const ssr = false;
 </script>
 
 <svelte:head>
-	<title>Jetsetter - Cypress, Frontend Masters</title>
+  <title>Jetsetter - Cypress, Frontend Masters</title>
 </svelte:head>
 
 <div id="jetsetter-application">
-	<slot />
+  <slot />
 </div>
