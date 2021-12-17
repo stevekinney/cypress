@@ -53,7 +53,6 @@ In this case, we can seed our database with the data we expect to see on the pag
 
 If you look in `prisma/seed.cjs`, there is another file called seed that will create users and posts in the database after clearing it out.
 
-- Create a task to run this file.
 - Write a test in `cypress/integration/09c-echo-chamber-with-tasks-completed.spec.js` that:
   - Seeds the database with these users.
   - Logs in with one of the users.
