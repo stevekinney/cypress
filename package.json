@@ -43,6 +43,7 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^3.6.0",
+		"@zerodevx/svelte-toast": "^0.6.2",
 		"cookie": "^0.4.1",
 		"date-fns": "^2.26.0"
 	}

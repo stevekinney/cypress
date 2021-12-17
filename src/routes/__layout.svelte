@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SvelteToast } from '@zerodevx/svelte-toast';
 	import { page } from '$app/stores';
 	import '../app.css';
 
@@ -34,6 +35,7 @@
 	<main class="mx-auto p-4 w-full lg:w-2/3">
 		<slot />
 	</main>
+	<SvelteToast />
 </div>
 
 <style lang="postcss">
