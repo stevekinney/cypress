@@ -1,5 +1,9 @@
 # Cypress Playground
 
+## Lessons and Content
+
+All of the lessons can be found [here](https://github.com/stevekinney/cypress-examples/tree/main/lessons#readme).
+
 ## Getting Started
 
 First and foremost, install your dependencies.
