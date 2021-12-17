@@ -3,82 +3,82 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply min-h-screen;
-	}
+  body {
+    @apply min-h-screen;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4 {
-		@apply font-bold;
-	}
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold;
+  }
 
-	label {
-		@apply text-purple-800 font-semibold;
-	}
+  label {
+    @apply text-purple-800 font-semibold;
+  }
 
-	input,
-	select {
-		@apply p-2 border-2 border-purple-800;
-	}
+  input,
+  select {
+    @apply p-2 border-2 border-purple-800;
+  }
 
-	input.small {
-		@apply text-sm;
-	}
+  input.small {
+    @apply text-sm;
+  }
 
-	button,
-	a.button {
-		@apply px-4 py-2 text-white bg-purple-500 border-2 border-purple-800;
-	}
+  button,
+  a.button {
+    @apply px-4 py-2 text-white bg-purple-500 border-2 border-purple-800;
+  }
 
-	button:hover,
-	a.button:hover {
-		@apply bg-purple-600;
-	}
+  button:hover,
+  a.button:hover {
+    @apply bg-purple-600;
+  }
 
-	button:active,
-	a.button:active {
-		@apply bg-purple-400;
-	}
+  button:active,
+  a.button:active {
+    @apply bg-purple-400;
+  }
 
-	button:disabled,
-	a.button:disabled {
-		@apply text-purple-400 bg-purple-100 border-purple-400;
-	}
+  button:disabled,
+  a.button:disabled {
+    @apply text-purple-400 bg-purple-100 border-purple-400;
+  }
 
-	button.secondary,
-	a.button.secondary {
-		@apply text-purple-800 bg-white;
-	}
+  button.secondary,
+  a.button.secondary {
+    @apply text-purple-800 bg-white;
+  }
 
-	button.secondary:hover,
-	a.button.secondary:hover {
-		@apply bg-purple-100;
-	}
+  button.secondary:hover,
+  a.button.secondary:hover {
+    @apply bg-purple-100;
+  }
 
-	button.secondary:active,
-	a.button.secondary:active {
-		@apply bg-purple-200;
-	}
+  button.secondary:active,
+  a.button.secondary:active {
+    @apply bg-purple-200;
+  }
 
-	button.danger,
-	a.button.danger {
-		@apply bg-red-600 border-red-800;
-	}
+  button.danger,
+  a.button.danger {
+    @apply bg-red-600 border-red-800;
+  }
 
-	button.danger:hover,
-	a.button.danger:hover {
-		@apply bg-red-500;
-	}
+  button.danger:hover,
+  a.button.danger:hover {
+    @apply bg-red-500;
+  }
 
-	button.danger:active,
-	a.button.danger:active {
-		@apply bg-red-600;
-	}
+  button.danger:active,
+  a.button.danger:active {
+    @apply bg-red-600;
+  }
 
-	button.small,
-	a.button.small {
-		@apply px-2 py-0 text-xs;
-	}
+  button.small,
+  a.button.small {
+    @apply px-2 py-0 text-xs;
+  }
 }

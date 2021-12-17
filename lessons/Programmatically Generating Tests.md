@@ -6,21 +6,21 @@ That said, there are times when you writing out every possible test case can get
 
 ```js
 const restaurants = [
-	'Chick-fil-A',
-	'McDonalds',
-	'In-N-Out',
-	'KFC',
-	'Jack In The Box',
-	'Jamba Juice',
-	'Starbucks',
-	'Dairy Queen',
-	'Burger King',
-	'Chipotle',
-	'Taco Bell',
-	'Five Guys',
-	'Sonic',
-	'Subway',
-	'Panera Bread'
+  'Chick-fil-A',
+  'McDonalds',
+  'In-N-Out',
+  'KFC',
+  'Jack In The Box',
+  'Jamba Juice',
+  'Starbucks',
+  'Dairy Queen',
+  'Burger King',
+  'Chipotle',
+  'Taco Bell',
+  'Five Guys',
+  'Sonic',
+  'Subway',
+  'Panera Bread',
 ];
 ```
 
@@ -28,17 +28,17 @@ Let's say what we _know_ the restaurants that are generated from our application
 
 ```js
 describe('Restaurant Filter', () => {
-	beforeEach(() => {
-		cy.get('#restaurant-visibility-filter').as('restaurant-filter');
-	});
+  beforeEach(() => {
+    cy.get('#restaurant-visibility-filter').as('restaurant-filter');
+  });
 
-	for (const restaurant of restaurants) {
-		it(`should only display rows that match ${restaurant}`, () => {
-			cy.get('@restaurant-filter').select(restaurant);
+  for (const restaurant of restaurants) {
+    it(`should only display rows that match ${restaurant}`, () => {
+      cy.get('@restaurant-filter').select(restaurant);
 
-			cy.get('td[headers="whereToOrder-column"]').should('contain', restaurant);
-		});
-	}
+      cy.get('td[headers="whereToOrder-column"]').should('contain', restaurant);
+    });
+  }
 });
 ```
 

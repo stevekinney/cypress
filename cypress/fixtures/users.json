@@ -1,12 +1,12 @@
 {
-	"users": [
-		{
-			"id": 1,
-			"email": "first@example.com"
-		},
-		{
-			"id": 2,
-			"email": "second@example.com"
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "email": "first@example.com"
+    },
+    {
+      "id": 2,
+      "email": "second@example.com"
+    }
+  ]
 }

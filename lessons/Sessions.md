@@ -10,7 +10,7 @@ Cypress gives us the ability to read and write cookies using `cy.getCookie` and 
 
 ```js
 cy.getCookie('cookie name').then((cookie) => {
-	console.log({ cookie });
+  console.log({ cookie });
 });
 ```
 
@@ -24,11 +24,11 @@ You can also pull from a real API in or set our token for us.
 
 ```js
 cy.request('/echo-chamber/api/users')
-	.then((response) => {
-		const [user] = response.body.users;
-		cy.setCookie('jwt', encodeToken(user)).then(() => user);
-	})
-	.as('user');
+  .then((response) => {
+    const [user] = response.body.users;
+    cy.setCookie('jwt', encodeToken(user)).then(() => user);
+  })
+  .as('user');
 ```
 
 ## Session

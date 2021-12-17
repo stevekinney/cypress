@@ -22,12 +22,12 @@ The one thing I will recommend right away is we add that friendly reference to t
 
 ```json
 {
-	"Add Cypress Reference Types": {
-		"scope": "javascript,typescript",
-		"prefix": "cyref",
-		"body": "/// <reference types=\"cypress\" />",
-		"description": "Add a reference to Cypress's type definitions"
-	}
+  "Add Cypress Reference Types": {
+    "scope": "javascript,typescript",
+    "prefix": "cyref",
+    "body": "/// <reference types=\"cypress\" />",
+    "description": "Add a reference to Cypress's type definitions"
+  }
 }
 ```
 
@@ -39,7 +39,7 @@ The first thing we're going to want to do is to visit the application, which is 
 
 ```js
 beforeEach(() => {
-	cy.visit('http://localhost:3000/jetsetter');
+  cy.visit('http://localhost:3000/jetsetter');
 });
 ```
 
@@ -49,13 +49,13 @@ Let's start small and just verify that there is even a form on the page and then
 
 ```js
 describe('Create a New Item', () => {
-	beforeEach(() => {
-		cy.visit('http://localhost:3000/jetsetter');
-	});
+  beforeEach(() => {
+    cy.visit('http://localhost:3000/jetsetter');
+  });
 
-	it('should have a form', () => {
-		cy.get('form').should('exist');
-	});
+  it('should have a form', () => {
+    cy.get('form').should('exist');
+  });
 });
 ```
 
@@ -69,7 +69,7 @@ For example, we _could_ modify our test as follows.
 
 ```js
 it('should have a form', () => {
-	cy.get('form');
+  cy.get('form');
 });
 ```
 
@@ -77,7 +77,7 @@ It found the element and then it was done. So, we're all good and we'll call it 
 
 ```js
 it('should have a form', () => {
-	cy.get('formm');
+  cy.get('formm');
 });
 ```
 
@@ -87,7 +87,7 @@ In this case it failed. Alternatively, if you wanted to make sure that it active
 
 ```js
 it('should not have a formm', () => {
-	cy.get('formm').should('not.exist');
+  cy.get('formm').should('not.exist');
 });
 ```
 
@@ -99,7 +99,7 @@ What happens if we try something like this?
 
 ```js
 it('should have an input button that is clickable', () => {
-	cy.get('[data-test="add-item"]').click();
+  cy.get('[data-test="add-item"]').click();
 });
 ```
 
@@ -115,13 +115,13 @@ Now, it's probably more reasonable to just assert that the button is disabled, b
 
 ```js
 it('should fail at clicking a button', (done) => {
-	cy.get('[data-test="add-item"]').click();
+  cy.get('[data-test="add-item"]').click();
 
-	cy.once('fail', (error) => {
-		expect(error.message).to.include('this element is `disabled`');
+  cy.once('fail', (error) => {
+    expect(error.message).to.include('this element is `disabled`');
 
-		done();
-	});
+    done();
+  });
 });
 ```
 
@@ -131,7 +131,7 @@ But, like I said—this is a much more reasonable test:
 
 ```js
 it('should have an "Add Item" button that is disabled', () => {
-	cy.get('[data-test="add-item"]').should('be.disabled');
+  cy.get('[data-test="add-item"]').should('be.disabled');
 });
 ```
 
@@ -141,8 +141,8 @@ We just saw that we can call `.click()` on a DOM node to simulate a click event,
 
 ```js
 it('should enable "Add Item" when text is in the input field', () => {
-	cy.get('[data-test="new-item-input"]').type('Good Attitude');
-	cy.get('[data-test="add-item"]').should('be.enabled');
+  cy.get('[data-test="new-item-input"]').type('Good Attitude');
+  cy.get('[data-test="add-item"]').should('be.enabled');
 });
 ```
 
@@ -150,9 +150,9 @@ Alternatively, now `.click()` will successfully execute.
 
 ```js
 it('should enable "Add Item" when text is in the input field', () => {
-	cy.get('[data-test="new-item-input"]').type('Good Attitude');
-	// cy.get('[data-test="add-item"]').should('be.enabled');
-	cy.get('[data-test="add-item"]').click();
+  cy.get('[data-test="new-item-input"]').type('Good Attitude');
+  // cy.get('[data-test="add-item"]').should('be.enabled');
+  cy.get('[data-test="add-item"]').click();
 });
 ```
 
@@ -164,22 +164,22 @@ As this point, this is what we're working with.
 
 ```js
 describe('Create a New Item', () => {
-	beforeEach(() => {
-		cy.visit('http://localhost:3000/jetsetter');
-	});
+  beforeEach(() => {
+    cy.visit('http://localhost:3000/jetsetter');
+  });
 
-	it('should have a form', () => {
-		cy.get('form').should('exist');
-	});
+  it('should have a form', () => {
+    cy.get('form').should('exist');
+  });
 
-	it('should have an "Add Item" button that is disabled', () => {
-		cy.get('[data-test="add-item"]').should('be.disabled');
-	});
+  it('should have an "Add Item" button that is disabled', () => {
+    cy.get('[data-test="add-item"]').should('be.disabled');
+  });
 
-	it('should enable "Add Item" when text is in the input field', () => {
-		cy.get('[data-test="new-item-input"]').type('Good Attitude');
-		// cy.get('[data-test="add-item"]').should('be.enabled');
-		cy.get('[data-test="add-item"]').click();
-	});
+  it('should enable "Add Item" when text is in the input field', () => {
+    cy.get('[data-test="new-item-input"]').type('Good Attitude');
+    // cy.get('[data-test="add-item"]').should('be.enabled');
+    cy.get('[data-test="add-item"]').click();
+  });
 });
 ```

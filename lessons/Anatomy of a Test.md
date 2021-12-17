@@ -50,11 +50,11 @@ Dust off your jQuery skills, because once you find the element you're looking fo
 
 ```js
 it('displays two todo items by default', () => {
-	cy.get('.todo-list li').should('have.length', 2);
+  cy.get('.todo-list li').should('have.length', 2);
 
-	cy.get('.todo-list li').first().should('have.text', 'Pay electric bill');
+  cy.get('.todo-list li').first().should('have.text', 'Pay electric bill');
 
-	cy.get('.todo-list li').last().should('have.text', 'Walk the dog');
+  cy.get('.todo-list li').last().should('have.text', 'Walk the dog');
 });
 ```
 
@@ -105,9 +105,9 @@ You can also chain your assertions.
 
 ```js
 cy.get('.assertions-link')
-	.should('have.class', 'active')
-	.and('have.attr', 'href')
-	.and('include', 'cypress.io');
+  .should('have.class', 'active')
+  .and('have.attr', 'href')
+  .and('include', 'cypress.io');
 ```
 
 ## Conclusion

@@ -17,11 +17,11 @@ And they might look something like this:
 import reset from '../../prisma/reset.cjs';
 
 const plugins: Cypress.PluginConfig = (on) => {
-	on('task', {
-		reset() {
-			return reset;
-		}
-	});
+  on('task', {
+    reset() {
+      return reset;
+    },
+  });
 };
 
 export default plugins;
@@ -31,11 +31,11 @@ This is what it might look like if you weren't using TypeScript:
 
 ```js
 module.exports = (on, config) => {
-	on('task', {
-		reset() {
-			require('../prisma/clear');
-		}
-	});
+  on('task', {
+    reset() {
+      require('../prisma/clear');
+    },
+  });
 };
 ```
 

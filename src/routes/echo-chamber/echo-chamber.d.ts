@@ -1,11 +1,11 @@
 type User = {
-	id: number;
-	email: string;
+  id: number;
+  email: string;
 };
 
 type Post = {
-	content: string;
-	id: number;
-	createdAt: string;
-	author: User;
+  content: string;
+  id: number;
+  createdAt: string;
+  author: User;
 };

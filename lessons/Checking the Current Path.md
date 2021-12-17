@@ -12,7 +12,7 @@ Let's verify the title first and then we'll click around for a bit.
 
 ```js
 it('should have the title of the application in the window', () => {
-	cy.title().should('contain', 'Echo Chamber');
+  cy.title().should('contain', 'Echo Chamber');
 });
 ```
 
@@ -22,8 +22,8 @@ Let's try out a new application called "Echo Chamber" and verify that as we clic
 
 ```js
 it('should navigate to "/sign-in" when you click the "Sign In" button', () => {
-	cy.get('[data-test="sign-in"]').click();
-	cy.location('pathname').should('contain', 'sign-in');
+  cy.get('[data-test="sign-in"]').click();
+  cy.location('pathname').should('contain', 'sign-in');
 });
 ```
 

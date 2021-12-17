@@ -14,8 +14,8 @@ There are a bunch of ways we could go about doing this.
 
 ```js
 it('should require an email', () => {
-	cy.get('@submit').click();
-	cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
+  cy.get('@submit').click();
+  cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
 });
 ```
 
@@ -23,12 +23,12 @@ it('should require an email', () => {
 
 ```js
 it('should require an email', () => {
-	cy.get('@submit').click();
-	cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
+  cy.get('@submit').click();
+  cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
 
-	cy.get('[data-test="sign-up-email"]:invalid')
-		.invoke('prop', 'validationMessage')
-		.should('contain', 'Please fill out this field');
+  cy.get('[data-test="sign-up-email"]:invalid')
+    .invoke('prop', 'validationMessage')
+    .should('contain', 'Please fill out this field');
 });
 ```
 
@@ -36,17 +36,17 @@ it('should require an email', () => {
 
 ```js
 it('should require an email', () => {
-	cy.get('@submit').click();
-	cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
+  cy.get('@submit').click();
+  cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1);
 
-	cy.get('[data-test="sign-up-email"]:invalid')
-		.invoke('prop', 'validationMessage')
-		.should('contain', 'Please fill out this field');
+  cy.get('[data-test="sign-up-email"]:invalid')
+    .invoke('prop', 'validationMessage')
+    .should('contain', 'Please fill out this field');
 
-	cy.get('[data-test="sign-up-email"]:invalid')
-		.invoke('prop', 'validity')
-		.its('valueMissing')
-		.should('be.true');
+  cy.get('[data-test="sign-up-email"]:invalid')
+    .invoke('prop', 'validity')
+    .its('valueMissing')
+    .should('be.true');
 });
 ```
 

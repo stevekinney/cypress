@@ -1,4 +1,4 @@
 type DogFact = {
-	id: number;
-	fact: string;
+  id: number;
+  fact: string;
 };

@@ -32,14 +32,14 @@ Now, we can refactor our last test as follows:
 
 ```js
 it('should hold onto an alias', () => {
-	cy.get('@unpackedItems').find('label').first().as('firstItem');
+  cy.get('@unpackedItems').find('label').first().as('firstItem');
 
-	cy.get('@firstItem').invoke('text').as('text');
-	cy.get('@firstItem').find('input[type="checkbox"]').click();
+  cy.get('@firstItem').invoke('text').as('text');
+  cy.get('@firstItem').find('input[type="checkbox"]').click();
 
-	cy.get('@text').then((text) => {
-		cy.get('@packedItems').find('label').first().should('include.text', text);
-	});
+  cy.get('@text').then((text) => {
+    cy.get('@packedItems').find('label').first().should('include.text', text);
+  });
 });
 ```
 

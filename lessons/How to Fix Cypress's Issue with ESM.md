@@ -2,7 +2,7 @@
 
 ### Solution: Use TypeScript
 
-````ts
+```ts
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -14,4 +14,4 @@ export default (on, config) => {
     },
   });
 };
-````
+```

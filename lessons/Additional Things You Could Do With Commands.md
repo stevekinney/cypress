@@ -4,13 +4,13 @@
 
 ```js
 Cypress.Commands.add('getSessionStorage', (key) => {
-	cy.window().then((window) => window.sessionStorage.getItem(key));
+  cy.window().then((window) => window.sessionStorage.getItem(key));
 });
 
 Cypress.Commands.add('setSessionStorage', (key, value) => {
-	cy.window().then((window) => {
-		window.sessionStorage.setItem(key, value);
-	});
+  cy.window().then((window) => {
+    window.sessionStorage.setItem(key, value);
+  });
 });
 ```
 
@@ -28,27 +28,27 @@ On your own: What would it look like if you refactored some of our previous code
 
 ```js
 Cypress.Commands.add('createUser', (user) => {
-	cy.request({
-		method: 'POST',
+  cy.request({
+    method: 'POST',
 
-		url: 'https://www.example.com/tokens',
+    url: 'https://www.example.com/tokens',
 
-		body: {
-			email: 'admin_username',
+    body: {
+      email: 'admin_username',
 
-			password: 'admin_password'
-		}
-	}).then((resp) => {
-		cy.request({
-			method: 'POST',
+      password: 'admin_password',
+    },
+  }).then((resp) => {
+    cy.request({
+      method: 'POST',
 
-			url: 'https://www.example.com/users',
+      url: 'https://www.example.com/users',
 
-			headers: { Authorization: 'Bearer ' + resp.body.token },
+      headers: { Authorization: 'Bearer ' + resp.body.token },
 
-			body: user
-		});
-	});
+      body: user,
+    });
+  });
 });
 ```
 
@@ -58,13 +58,13 @@ What if we wanted to plug this data into Redux?
 
 ```js
 Cypress.Commands.add('signIn', (email, password) => {
-	return cy.window().then((w) => {
-		return win.app.$store.dispatch('signIn', {
-			email: 'steve@temporal.io',
+  return cy.window().then((w) => {
+    return win.app.$store.dispatch('signIn', {
+      email: 'steve@temporal.io',
 
-			password: 'password'
-		});
-	});
+      password: 'password',
+    });
+  });
 });
 ```
 

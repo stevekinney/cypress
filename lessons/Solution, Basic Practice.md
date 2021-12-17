@@ -8,12 +8,12 @@ The first test should be pretty similiar to what we've seen before.
 
 ```js
 it('should appear on the page after clicking on "Add Item"', () => {
-	const item = 'Good Attitude';
+  const item = 'Good Attitude';
 
-	cy.get('[data-test="new-item-input"]').type(item);
-	cy.get('[data-test="add-item"]').click();
+  cy.get('[data-test="new-item-input"]').type(item);
+  cy.get('[data-test="add-item"]').click();
 
-	cy.contains(item);
+  cy.contains(item);
 });
 ```
 
@@ -21,12 +21,12 @@ In this test, we're just looking to see that it's on the page at all. But, it tu
 
 ```js
 it('should appear in the "Unpacked Items" list', () => {
-	const item = 'Good Attitude';
+  const item = 'Good Attitude';
 
-	cy.get('[data-test="new-item-input"]').type(item);
-	cy.get('form').submit();
+  cy.get('[data-test="new-item-input"]').type(item);
+  cy.get('form').submit();
 
-	cy.get('[data-test="items-unpacked"]').contains(item);
+  cy.get('[data-test="items-unpacked"]').contains(item);
 });
 ```
 
@@ -34,12 +34,12 @@ We can even go as far as making sure that it's the _last_ element of a set.
 
 ```js
 it('should appear as the last item in the "Unpacked Items" list', () => {
-	const item = 'Good Attitude';
+  const item = 'Good Attitude';
 
-	cy.get('[data-test="new-item-input"]').type(item);
-	cy.get('form').submit();
+  cy.get('[data-test="new-item-input"]').type(item);
+  cy.get('form').submit();
 
-	cy.get('[data-test="items-unpacked"] li').last().contains(item);
+  cy.get('[data-test="items-unpacked"] li').last().contains(item);
 });
 ```
 
@@ -49,10 +49,10 @@ This test is somewhat brittle since it relies on pre-loaded data that _could_ ch
 
 ```js
 it('should show items that match whatever is in the filter field', () => {
-	cy.get('[data-test="filter-items"]').type('tooth');
+  cy.get('[data-test="filter-items"]').type('tooth');
 
-	cy.contains('Tooth Brush');
-	cy.contains('Tooth Paste');
+  cy.contains('Tooth Brush');
+  cy.contains('Tooth Paste');
 });
 ```
 
@@ -60,8 +60,8 @@ We can also insist that something is _not_ on the page as well.
 
 ```js
 it('should hide items that do not match whatever is in the filter field', () => {
-	cy.get('[data-test="filter-items"]').type('tooth');
-	cy.contains('Hoodie').should('not.exist');
+  cy.get('[data-test="filter-items"]').type('tooth');
+  cy.contains('Hoodie').should('not.exist');
 });
 ```
 
@@ -73,11 +73,11 @@ We could get all of the elements and make sure that they match the word that we'
 
 ```js
 it.only('should show items that match whatever is in the filter field (better)', () => {
-	cy.get('[data-test="filter-items"]').type('Tooth');
+  cy.get('[data-test="filter-items"]').type('Tooth');
 
-	cy.get('[data-test="items"] li').each(($item) => {
-		expect($item.text()).to.include('Tooth');
-	});
+  cy.get('[data-test="items"] li').each(($item) => {
+    expect($item.text()).to.include('Tooth');
+  });
 });
 ```
 
@@ -87,11 +87,11 @@ The alternative is to re-wrap that jQuery collection back into a Cypress command
 
 ```js
 it.only('should show items that match whatever is in the filter field (better, wrap)', () => {
-	cy.get('[data-test="filter-items"]').type('Tooth');
+  cy.get('[data-test="filter-items"]').type('Tooth');
 
-	cy.get('[data-test="items"] li').each(($item) => {
-		cy.wrap($item).should('include.text', 'Tooth');
-	});
+  cy.get('[data-test="items"] li').each(($item) => {
+    cy.wrap($item).should('include.text', 'Tooth');
+  });
 });
 ```
 
@@ -103,14 +103,14 @@ Alright, what about taking stuff off the page. Well, you have two choices: Eithe
 
 ```js
 it('should remove all of the elements from the page', () => {
-	cy.get('[data-test="remove-all"]').click();
-	cy.get('[data-test="items"] li').should('not.exist');
+  cy.get('[data-test="remove-all"]').click();
+  cy.get('[data-test="items"] li').should('not.exist');
 });
 
 it('should remove all of the elements from the page (alternate)', () => {
-	cy.get('[data-test="remove-all"]').click();
-	cy.get('[data-test="items-packed"]').contains('No items to show.').should('exist');
-	cy.get('[data-test="items-unpacked"]').contains('No items to show.').should('exist');
+  cy.get('[data-test="remove-all"]').click();
+  cy.get('[data-test="items-packed"]').contains('No items to show.').should('exist');
+  cy.get('[data-test="items-unpacked"]').contains('No items to show.').should('exist');
 });
 ```
 
@@ -118,7 +118,7 @@ Do we want to make sure that nothing happened to our "Remove" button?
 
 ```js
 it('should have a remove button on an item', () => {
-	cy.get('[data-test="items"] li').find('[data-test="remove"]');
+  cy.get('[data-test="items"] li').find('[data-test="remove"]');
 });
 ```
 
@@ -126,9 +126,9 @@ We can apply that same trick that we used before, however to check _all_ of them
 
 ```js
 it('should have a remove button on each (literally)', () => {
-	cy.get('[data-test="items"] li').each((li) => {
-		cy.wrap(li).find('[data-test="remove"]').should('exist');
-	});
+  cy.get('[data-test="items"] li').each((li) => {
+    cy.wrap(li).find('[data-test="remove"]').should('exist');
+  });
 });
 ```
 
@@ -136,8 +136,8 @@ Okay, so now let's make sure it's actually off the page.
 
 ```js
 it('should remove an element from the page', () => {
-	cy.contains('Tooth Brush').parent().find('[data-test="remove"]').click();
-	cy.contains('Tooth Brush').should('not.exist');
+  cy.contains('Tooth Brush').parent().find('[data-test="remove"]').click();
+  cy.contains('Tooth Brush').should('not.exist');
 });
 ```
 
@@ -149,10 +149,10 @@ Instead, let's use `within` to do what we need to do and return to our place in 
 
 ```js
 it('should remove an element from the page (better)', () => {
-	cy.get('[data-test="items"] li')
-		.first()
-		.within(() => cy.get('[data-test="remove"]').click())
-		.should('not.exist');
+  cy.get('[data-test="items"] li')
+    .first()
+    .within(() => cy.get('[data-test="remove"]').click())
+    .should('not.exist');
 });
 ```
 
@@ -162,8 +162,8 @@ One thing we could do is just make sure that there aren't any left in the "Packe
 
 ```js
 it('should empty out the "Packed" list', () => {
-	cy.get('[data-test="mark-all-as-unpacked"]').click();
-	cy.get('[data-test="items-packed"] li').should('not.exist');
+  cy.get('[data-test="mark-all-as-unpacked"]').click();
+  cy.get('[data-test="items-packed"] li').should('not.exist');
 });
 ```
 
@@ -171,8 +171,8 @@ That's well and good, but what about the edge case where they could just go comp
 
 ```js
 it('should empty have all of the items in the "Unpacked" list (brittle)', () => {
-	cy.get('[data-test="mark-all-as-unpacked"]').click();
-	cy.get('[data-test="items-unpacked"] li').its('length').should('eq', 5);
+  cy.get('[data-test="mark-all-as-unpacked"]').click();
+  cy.get('[data-test="items-unpacked"] li').its('length').should('eq', 5);
 });
 ```
 
@@ -180,12 +180,12 @@ Gross. This relies on me knowing too much about the page. We have another trick 
 
 ```js
 it('should empty have all of the items in the "Unpacked" list (better)', () => {
-	cy.get('[data-test="items"] li')
-		.its('length')
-		.then((count) => {
-			cy.get('[data-test="mark-all-as-unpacked"]').click();
-			cy.get('[data-test="items-unpacked"] li').its('length').should('eq', count);
-		});
+  cy.get('[data-test="items"] li')
+    .its('length')
+    .then((count) => {
+      cy.get('[data-test="mark-all-as-unpacked"]').click();
+      cy.get('[data-test="items-unpacked"] li').its('length').should('eq', count);
+    });
 });
 ```
 
@@ -197,8 +197,8 @@ There is an easy, but brittle approach.
 
 ```js
 it('should move an individual item from "Unpacked" to "Packed" (brittle)', () => {
-	cy.get('[data-test="items-unpacked"]').contains('Tooth Brush').click();
-	cy.get('[data-test="items-packed"]').contains('Tooth Brush').should('exist');
+  cy.get('[data-test="items-unpacked"]').contains('Tooth Brush').click();
+  cy.get('[data-test="items-packed"]').contains('Tooth Brush').should('exist');
 });
 ```
 
@@ -213,14 +213,14 @@ What's going on here?
 
 ```js
 it('should move an individual item from "Unpacked" to "Packed" (better)', () => {
-	cy.get('[data-test="items-unpacked"] li label')
-		.first()
-		.within(() => {
-			cy.get('input[type="checkbox"]').click();
-		})
-		.then(($item) => {
-			const text = $item.text();
-			cy.get('[data-test="items-packed"] li label').first().should('have.text', text);
-		});
+  cy.get('[data-test="items-unpacked"] li label')
+    .first()
+    .within(() => {
+      cy.get('input[type="checkbox"]').click();
+    })
+    .then(($item) => {
+      const text = $item.text();
+      cy.get('[data-test="items-packed"] li label').first().should('have.text', text);
+    });
 });
 ```

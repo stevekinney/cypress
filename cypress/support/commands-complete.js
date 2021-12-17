@@ -25,29 +25,29 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('waitForApp', () => {
-	return cy.wrap(
-		new Promise((resolve) => {
-			cy.window().then((win) => {
-				win.addEventListener('sveltekit:start', resolve);
-			});
-		})
-	);
+  return cy.wrap(
+    new Promise((resolve) => {
+      cy.window().then((win) => {
+        win.addEventListener('sveltekit:start', resolve);
+      });
+    }),
+  );
 });
 
 Cypress.Commands.add('getData', (attribute) => {
-	return cy.get(`[data-test="${attribute}"]`);
+  return cy.get(`[data-test="${attribute}"]`);
 });
 
 Cypress.Commands.add('signIn', (user) => {
-	cy.visit('/echo-chamber/sign-in');
-	cy.getData('sign-in-email').type(user.email);
-	cy.getData('sign-in-password').type(user.password);
-	cy.getData('sign-in-submit').click();
+  cy.visit('/echo-chamber/sign-in');
+  cy.getData('sign-in-email').type(user.email);
+  cy.getData('sign-in-password').type(user.password);
+  cy.getData('sign-in-submit').click();
 });
 
 Cypress.Commands.add('signUp', (user) => {
-	cy.visit('/echo-chamber/sign-up');
-	cy.getData('sign-up-email').type(user.email);
-	cy.getData('sign-up-password').type(user.password);
-	cy.getData('sign-up-submit').click();
+  cy.visit('/echo-chamber/sign-up');
+  cy.getData('sign-up-email').type(user.email);
+  cy.getData('sign-up-password').type(user.password);
+  cy.getData('sign-up-submit').click();
 });

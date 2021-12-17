@@ -18,11 +18,11 @@ Using real requests sounds all great and wonderful, but they have some downsides
 
 ```js
 cy.intercept(
-	{
-		method: 'GET',
-		url: '/users/*'
-	},
-	[{ username: 'Jimi', id: 1 }]
+  {
+    method: 'GET',
+    url: '/users/*',
+  },
+  [{ username: 'Jimi', id: 1 }],
 ).as('getUsers');
 ```
 
@@ -72,17 +72,17 @@ cy.intercept(url, routeMatcher, routeHandler);
 
 ```js
 cy.intercept('/workflows', {
-	body: [{ workflow: '1' }, { workflow: '2' }]
+  body: [{ workflow: '1' }, { workflow: '2' }],
 });
 ```
 
 ```js
 cy.intercept('/not-found', {
-	statusCode: 404,
-	body: '404 Not Found!',
-	headers: {
-		'x-not-found': 'true'
-	}
+  statusCode: 404,
+  body: '404 Not Found!',
+  headers: {
+    'x-not-found': 'true',
+  },
 });
 ```
 
@@ -92,13 +92,13 @@ cy.intercept('/not-found', {
 
 ```js
 cy.intercept('POST', '/greatest-bands', (req) => {
-	expect(req.body).to.include('Oasis');
+  expect(req.body).to.include('Oasis');
 });
 
 cy.intercept('POST', '/greatest-bands', (req) => {
-	req.reply({
-		body: 'We intercepted this request and this is our stubbed response.'
-	});
+  req.reply({
+    body: 'We intercepted this request and this is our stubbed response.',
+  });
 });
 ```
 
@@ -114,25 +114,25 @@ Here is an example of `req.on`:
 
 ```js
 cy.intercept('GET', '/users', (req) => {
-	req.on('before:response', (res) => {
-		console.log('About to get a response.');
-	});
+  req.on('before:response', (res) => {
+    console.log('About to get a response.');
+  });
 });
 
 cy.intercept('GET', '/users', (req) => {
-	req.on('before:response', (res) => {
-		res.send({ body: 'We modified this response!' });
-	});
+  req.on('before:response', (res) => {
+    res.send({ body: 'We modified this response!' });
+  });
 });
 
 cy.intercept('POST', '/users', (req) => {
-	req.on('response', (res) => {
-		console.log('We have heard back from the server.');
-	});
+  req.on('response', (res) => {
+    console.log('We have heard back from the server.');
+  });
 
-	req.on('after:response', (res) => {
-		console.log('The request was sent to the browser.');
-	});
+  req.on('after:response', (res) => {
+    console.log('The request was sent to the browser.');
+  });
 });
 ```
 

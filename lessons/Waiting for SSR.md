@@ -31,25 +31,25 @@ The answer is that we need to wait for whatever event our framework of choice fi
 
 ```js
 describe.only('Ratings Filter with SSR', () => {
-	beforeEach(() => {
-		cy.visit('/secret-menu');
-		cy.get('#minimum-rating-visibility').as('rating-filter');
-	});
+  beforeEach(() => {
+    cy.visit('/secret-menu');
+    cy.get('#minimum-rating-visibility').as('rating-filter');
+  });
 
-	it('should only show items with a popularity rating of 7 or higher', () => {
-		cy.wrap(
-			new Promise((resolve) => {
-				cy.window().then((win) => {
-					win.addEventListener('sveltekit:start', resolve);
-				});
-			})
-		).then(() => {
-			cy.get('@rating-filter').invoke('val', 7).trigger('change');
-			cy.get('td[headers="popularity-column"]').each(($el) => {
-				expect(+$el.text()).to.be.gte(7);
-			});
-		});
-	});
+  it('should only show items with a popularity rating of 7 or higher', () => {
+    cy.wrap(
+      new Promise((resolve) => {
+        cy.window().then((win) => {
+          win.addEventListener('sveltekit:start', resolve);
+        });
+      }),
+    ).then(() => {
+      cy.get('@rating-filter').invoke('val', 7).trigger('change');
+      cy.get('td[headers="popularity-column"]').each(($el) => {
+        expect(+$el.text()).to.be.gte(7);
+      });
+    });
+  });
 });
 ```
 
@@ -57,13 +57,13 @@ This is a little verbose, can we pull it out into a command?
 
 ```js
 Cypress.Commands.add('waitForApp', () => {
-	return cy.wrap(
-		new Promise((resolve) => {
-			cy.window().then((win) => {
-				win.addEventListener('sveltekit:start', resolve);
-			});
-		})
-	);
+  return cy.wrap(
+    new Promise((resolve) => {
+      cy.window().then((win) => {
+        win.addEventListener('sveltekit:start', resolve);
+      });
+    }),
+  );
 });
 ```
 
@@ -71,9 +71,9 @@ Then we can do something like this:
 
 ```js
 it('should only show items with a popularity rating of 7 or higher', () => {
-	cy.waitForApp().then(() => {
-		cy.get('@rating-filter').invoke('val', 7).trigger('change');
-	});
+  cy.waitForApp().then(() => {
+    cy.get('@rating-filter').invoke('val', 7).trigger('change');
+  });
 });
 ```
 
@@ -81,17 +81,17 @@ Even better, I can wait for the app to hydrate before each test.
 
 ```js
 describe.only('Ratings Filter with SSR', () => {
-	beforeEach(() => {
-		cy.visit('/secret-menu');
-		cy.get('#minimum-rating-visibility').as('rating-filter');
-		return cy.waitForApp();
-	});
+  beforeEach(() => {
+    cy.visit('/secret-menu');
+    cy.get('#minimum-rating-visibility').as('rating-filter');
+    return cy.waitForApp();
+  });
 
-	it('should only show items with a popularity rating of 7 or higher', () => {
-		cy.get('@rating-filter').invoke('val', 7).trigger('change');
-		cy.get('td[headers="popularity-column"]').each(($el) => {
-			expect(+$el.text()).to.be.gte(7);
-		});
-	});
+  it('should only show items with a popularity rating of 7 or higher', () => {
+    cy.get('@rating-filter').invoke('val', 7).trigger('change');
+    cy.get('td[headers="popularity-column"]').each(($el) => {
+      expect(+$el.text()).to.be.gte(7);
+    });
+  });
 });
 ```
