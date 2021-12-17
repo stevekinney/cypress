@@ -26,7 +26,7 @@
 		<h3>Applications</h3>
 		<ul>
 			{#each applications as application}
-				<li class="mb-4">
+				<li class="mb-4 px-2" class:bg-purple-600={application.active}>
 					<a href={application.path} class:active={application.active}>{application.name}</a>
 				</li>
 			{/each}
