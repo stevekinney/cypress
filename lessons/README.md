@@ -1,4 +1,4 @@
-1. [Set Up](Set%20Up.md)
+1. [Set Up](https://github.com/stevekinney/cypress-examples#readme)
 1. [Anatomy of a Test](Anatomy%20of%20a%20Test.md)
 1. [Writing Tests](Writing%20Tests.md)
 1. [Exercise, Basic Practice](Exercise,%20Basic%20Practice.md)
