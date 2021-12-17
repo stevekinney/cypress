@@ -15,5 +15,6 @@
 1. [Commands](Commands.md)
 1. [Network Requests](Network%20Requests.md)
 1. [Sessions](Sessions.md)
+1. [Mocking in Depth](https://github.com/stevekinney/cypress-examples/blob/main/cypress/integration/14-echo-chamber-stubbed-completed.spec.js)
 1. [Continuous Integration and Cypress Dashboard](Continuous%20Integration%20and%20Cypress%20Dashboard.md)
 1. [Cypress Studio](Cypress%20Studio.md)
