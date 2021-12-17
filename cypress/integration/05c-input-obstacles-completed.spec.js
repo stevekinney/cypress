@@ -16,7 +16,7 @@ describe('Input obstacles', () => {
 		cy.get('[data-test="select-result"]').contains('Thor');
 	});
 
-	it.only('should find and control a checkbox input', () => {
+	it('should find and control a checkbox input', () => {
 		cy.get('[data-test="checkbox-tomato"]').check();
 		cy.get('[data-test="checkbox-result"]').contains('Tomato');
 	});

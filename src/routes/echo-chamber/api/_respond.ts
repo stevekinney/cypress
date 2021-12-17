@@ -1,3 +1,5 @@
+import { encodeToken } from '$lib/utilities/jwt';
+
 export function respond(body: any) {
 	if (body.errors) {
 		return { status: 401, body };
@@ -5,7 +7,7 @@ export function respond(body: any) {
 
 	const { id, email } = body.user;
 	const json = JSON.stringify({ id, email });
-	const value = Buffer.from(json).toString('base64');
+	const value = encodeToken(json);
 
 	return {
 		status: 302,

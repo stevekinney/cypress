@@ -34,7 +34,7 @@ describe('Sign In', () => {
 		cy.task('seed');
 	});
 
-	it.only('should sign in with an existing user', () => {
+	it('should sign in with an existing user', () => {
 		cy.get('[data-test="sign-in-email"]').type(user.email);
 		cy.get('[data-test="sign-in-password"]').type(user.password);
 		cy.get('[data-test="sign-in-submit"]').click();

@@ -44,13 +44,15 @@ async function main() {
 			}
 		}
 	});
+
+	return Promise.all([first, second]);
 }
 
 if (require.main === module) {
 	main();
 }
 
-module.exports = () =>
+module.exports = async () =>
 	main()
 		.catch((e) => {
 			console.error(e);

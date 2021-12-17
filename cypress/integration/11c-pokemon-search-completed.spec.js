@@ -29,9 +29,8 @@ describe('Pokémon Search', () => {
 
 	it('should call the API with correct query parameter', () => {
 		cy.get('@search').type('char');
-		cy.wait('@api');
 		cy.wait('@api').then((interception) => {
-			expect(interception.request.url).to.match(/\?name=char$/);
+			expect(interception.request.url).to.contain('name=char');
 		});
 	});
 

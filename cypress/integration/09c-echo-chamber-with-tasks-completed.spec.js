@@ -28,13 +28,30 @@ describe('Sign Up', () => {
 	});
 });
 
-describe('Sign In', () => {
+describe('Sign In (Failure Mode)', () => {
 	beforeEach(() => {
+		cy.task('reset');
 		cy.visit('/echo-chamber/sign-in');
-		cy.task('seed');
 	});
 
-	it.only('should sign in with an existing user', () => {
+	it('should sign in with an existing user', () => {
+		cy.get('[data-test="sign-in-email"]').type(user.email);
+		cy.get('[data-test="sign-in-password"]').type(user.password);
+		cy.get('[data-test="sign-in-submit"]').click();
+
+		cy.location('pathname').should('contain', '/echo-chamber/sign-in');
+		cy.contains('Signed in as ' + user.email).should('not.exist');
+		cy.contains('No such user exists');
+	});
+});
+
+describe('Sign In', () => {
+	beforeEach(() => {
+		cy.task('seed');
+		cy.visit('/echo-chamber/sign-in');
+	});
+
+	it('should sign in with an existing user', () => {
 		cy.get('[data-test="sign-in-email"]').type(user.email);
 		cy.get('[data-test="sign-in-password"]').type(user.password);
 		cy.get('[data-test="sign-in-submit"]').click();

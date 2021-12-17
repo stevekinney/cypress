@@ -12,7 +12,7 @@ if (require.main === module) {
 	main();
 }
 
-module.exports = () =>
+module.exports = async () =>
 	main()
 		.catch((e) => {
 			console.error(e);

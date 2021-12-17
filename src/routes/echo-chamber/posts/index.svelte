@@ -16,7 +16,7 @@
 
 <div class="flex flex-col place-items-center" data-test="post-empty-state">
 	{#if posts.length}
-		<p data-test="post-empty-state-has-posts">Select a hot take from the left.</p>
+		<p data-test="post-empty-state-has-posts">Select a hot take.</p>
 	{:else}
 		<p data-test="post-empty-state-no-posts">Add your first hot take.</p>
 	{/if}

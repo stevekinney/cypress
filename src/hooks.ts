@@ -1,8 +1,9 @@
+import { decodeToken } from '$lib/utilities/jwt';
 import * as cookie from 'cookie';
 
 export async function handle({ request, resolve }) {
 	const cookies = cookie.parse(request.headers.cookie || '');
-	const jwt = cookies.jwt && Buffer.from(cookies.jwt, 'base64').toString('utf-8');
+	const jwt = cookies.jwt && decodeToken(cookies.jwt);
 	request.locals.user = jwt ? JSON.parse(jwt) : null;
 	return await resolve(request);
 }
