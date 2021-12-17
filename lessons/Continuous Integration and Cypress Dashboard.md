@@ -1,16 +1,14 @@
----
-title: Continuous Integration with GitHub Actions
----
+# Continuous Integration with GitHub Actions
 
 ## Running Cypress in Headless Mode
 
 What if you want to run Cypress in CI/CD?
 
-````sh
+```sh
 npx cypress run
-````
+```
 
-This will *not* run the Desktop application, but it *will* record video for you to review if anything fails.
+This will _not_ run the Desktop application, but it _will_ record video for you to review if anything fails.
 
 ## Setting Up a Github Action
 
@@ -20,7 +18,7 @@ You can search the Marketplace on the side, but it basically just gives you some
 
 The good news is that [GitHub Actions already support running Cypress tests](https://github.com/cypress-io/github-action). All we have to do is configure it.
 
-````yml
+```yml
 name: Run Cypress Tests
 on: [push]
 jobs:
@@ -38,13 +36,13 @@ jobs:
           headless: true
           start: npm start
           wait-on: http://localhost:3000
-````
+```
 
 So, what's going on here?
 
-* Checkout the most recent commit.
-* Install your dependencies via `npm`.
-* Run the Cypress tests *after* the server starts up.
+- Checkout the most recent commit.
+- Install your dependencies via `npm`.
+- Run the Cypress tests _after_ the server starts up.
 
 ## Cypress Dashboard
 
@@ -60,7 +58,7 @@ I can run it from my local machine, but that's kind of silly.
 
 ![successful-run.png](Attachments/successful-run.png)
 
-What we *really* want to do is have these results generate from our build pipeline.
+What we _really_ want to do is have these results generate from our build pipeline.
 
 ### Connecting GitHub Actions to Cypress Dashboard
 
@@ -74,7 +72,7 @@ We'll create a new secret called `CYPRESS_RECORD_KEY`.
 
 And now, we'll update our `main.yml` as follows:
 
-````yml
+```yml
 name: Run Cypress Tests
 on: [push]
 jobs:
@@ -95,7 +93,7 @@ jobs:
           wait-on: http://localhost:3000
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-````
+```
 
 We're adding `record: true` to the Cypress action itself as well as setting the environment variable from our repositories secrets.
 

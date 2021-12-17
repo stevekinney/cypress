@@ -1,6 +1,4 @@
----
-title: Input Obstacles
----
+# Input Obstacles
 
 The Web is great for a lot of reasons. Consistency is not one of those reasons. A lot of the different elements and controls that we use on a day-to-day basis were added over a period of decades and even then, this is a world where on its best day in January, if you call `getMonth()` on a `Date` object, you're going to get `0`.
 

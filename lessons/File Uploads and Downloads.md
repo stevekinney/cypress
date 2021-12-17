@@ -1,6 +1,4 @@
----
-title: File Uploads and Downloads
----
+# File Uploads and Downloads
 
 Plugin: https://github.com/abramenal/cypress-file-upload
 

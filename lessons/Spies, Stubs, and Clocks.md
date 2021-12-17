@@ -1,6 +1,4 @@
----
-title: "Spies, Stubs, and Clocks"
----
+# Spies, Stubs, and Clocks
 
 ## Spies
 
@@ -12,14 +10,14 @@ Chances are that no only is most of your code wrapped in closures, but it's also
 
 That said, there is a lot of functionality already in the global scope. Here are a few examples that you may have heard of:
 
-* `console.log` and its siblings
-* `setInterval` and `setTimeout`
-* `localStorage.setItem` and `localStorage.getItem`
-* `navigator`
-  * `navigator.clipboard` and its associated methods
-  * `navigation.geolocation`
-  * `navigator.onLine`
-  * `navigator.getBattery()`
+- `console.log` and its siblings
+- `setInterval` and `setTimeout`
+- `localStorage.setItem` and `localStorage.getItem`
+- `navigator`
+  - `navigator.clipboard` and its associated methods
+  - `navigation.geolocation`
+  - `navigator.onLine`
+  - `navigator.getBattery()`
 
 ## Stubs
 
