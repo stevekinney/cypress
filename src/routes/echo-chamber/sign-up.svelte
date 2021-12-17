@@ -1,4 +1,29 @@
+<script context="module">
+	export async function load({ session, page }) {
+		const error = page.query.get('error');
+
+		if (session.user) {
+			return {
+				status: 302,
+				redirect: '/echo-chamber/posts'
+			};
+		}
+
+		return {
+			props: { error }
+		};
+	}
+</script>
+
+<script lang="ts">
+	export let error: string;
+</script>
+
 <h2>Sign Up</h2>
+
+{#if error}
+	<p class="text-red-900 border-red-900 bg-red-300 border-2 p-2 my-4">{error}</p>
+{/if}
 
 <form on:submit action="/echo-chamber/api/sign-up" method="post" data-test="sign-up-form">
 	<label for="email">Email Address</label><input
