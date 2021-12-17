@@ -1,5 +1,7 @@
 # File Uploads and Downloads
 
-Plugin: https://github.com/abramenal/cypress-file-upload
+This is an area for you to explore after the workshop.
 
-File download reciple: https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/testing-dom__download
+**Plugin**: https://github.com/abramenal/cypress-file-upload
+
+**File download recipe**: https://github.com/cypress-io/cypress-example-recipes/tree/master/examples/testing-dom__download

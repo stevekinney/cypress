@@ -11,7 +11,12 @@ export const get: RequestHandler = async (request) => {
 			id: +request.params.id
 		},
 		include: {
-			author: true
+			author: {
+				select: {
+					id: true,
+					email: true
+				}
+			}
 		}
 	});
 

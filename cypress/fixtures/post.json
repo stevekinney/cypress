@@ -1,0 +1,9 @@
+{
+	"post": {
+		"id": 1,
+		"content": "Ravioli are a form of Pop Tart.",
+		"createdAt": "2021-12-17T10:47:08.198Z",
+		"authorId": 1,
+		"author": { "id": 1, "email": "first@example.com" }
+	}
+}
