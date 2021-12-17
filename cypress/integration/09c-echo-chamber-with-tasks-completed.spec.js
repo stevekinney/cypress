@@ -27,3 +27,19 @@ describe('Sign Up', () => {
 		cy.contains('Signed in as ' + user.email);
 	});
 });
+
+describe('Sign In', () => {
+	beforeEach(() => {
+		cy.visit('/echo-chamber/sign-in');
+		cy.task('seed');
+	});
+
+	it.only('should sign in with an existing user', () => {
+		cy.get('[data-test="sign-in-email"]').type(user.email);
+		cy.get('[data-test="sign-in-password"]').type(user.password);
+		cy.get('[data-test="sign-in-submit"]').click();
+
+		cy.location('pathname').should('contain', '/echo-chamber/posts');
+		cy.contains('Signed in as ' + user.email);
+	});
+});

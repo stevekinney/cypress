@@ -15,7 +15,6 @@ describe('Create a New Item', () => {
 
 	it('should enable "Add Item" when text is in the input field', () => {
 		cy.get('[data-test="new-item-input"]').type('Good Attitude');
-		// cy.get('[data-test="add-item"]').should('be.enabled');
 		cy.get('[data-test="add-item"]').click();
 	});
 });

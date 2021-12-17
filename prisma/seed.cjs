@@ -7,8 +7,6 @@ async function main() {
 
 	await prisma.$transaction([deletePosts, deleteUsers]);
 
-	console.log('All data has been cleared!');
-
 	const first = await prisma.user.upsert({
 		where: { email: 'first@example.com' },
 		update: {},
@@ -48,13 +46,12 @@ async function main() {
 	});
 }
 
-module.exports = main;
-
-main()
-	.catch((e) => {
-		console.error(e);
-		process.exit(1);
-	})
-	.finally(async () => {
-		await prisma.$disconnect();
-	});
+module.exports = () =>
+	main()
+		.catch((e) => {
+			console.error(e);
+			process.exit(1);
+		})
+		.finally(async () => {
+			await prisma.$disconnect();
+		});

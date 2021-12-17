@@ -4,15 +4,12 @@ describe('Dog Facts', () => {
 	beforeEach(() => {
 		cy.visit('/dog-facts');
 
-		cy.intercept('/dog-facts/api?*').as('api');
 		cy.get('[data-test="fetch-button"]').as('fetchButton');
 		cy.get('[data-test="clear-button"]').as('clearButton');
 		cy.get('[data-test="amount-select"]').as('amountSelect');
 		cy.get('[data-test="empty-state"]').as('emptyState');
-	});
 
-	it('should have an <h1> that has the word "Dog Facts"', () => {
-		cy.get('h1').should('have.text', 'Dog Facts');
+		cy.intercept('/dog-facts/api?*').as('api');
 	});
 
 	it('should start out with an empty state', () => {
@@ -27,10 +24,6 @@ describe('Dog Facts', () => {
 	it('should no longer have an empty state after a fetch', () => {
 		cy.get('@fetchButton').click();
 		cy.get('@emptyState').should('not.exist');
-	});
-
-	it('should default to looking for three facts', () => {
-		cy.get('@amountSelect').invoke('val').should('equal', '3');
 	});
 
 	it('should adjust the amount when the select is changed', () => {

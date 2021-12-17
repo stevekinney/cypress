@@ -12,14 +12,10 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-import reset from '../../prisma/clear.cjs';
+import reset from '../../prisma/reset.cjs';
 import seed from '../../prisma/seed.cjs';
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// eslint-disable-next-line no-unused-vars
-export default (on, config) => {
+const plugins: Cypress.PluginConfig = (on) => {
 	on('task', {
 		reset() {
 			return reset;
@@ -29,3 +25,5 @@ export default (on, config) => {
 		}
 	});
 };
+
+export default plugins;

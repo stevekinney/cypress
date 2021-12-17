@@ -38,7 +38,7 @@ Cypress.Commands.add('getData', (attribute) => {
 	return cy.get(`[data-test="${attribute}"]`);
 });
 
-Cypress.Commands.add('login', (user) => {
+Cypress.Commands.add('signIn', (user) => {
 	cy.visit('/echo-chamber/sign-in');
 	cy.getData('sign-in-email').type(user.email);
 	cy.getData('sign-in-password').type(user.password);

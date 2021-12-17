@@ -9,17 +9,7 @@ describe('Initial Page', () => {
 		cy.get('[data-test="application-title"]').should('contain', 'Echo Chamber');
 	});
 
-	it('should have the title of the application in the window', () => {
-		cy.title().should('contain', 'Echo Chamber');
-	});
-
-	it('should have a "Sign In" button', () => {
-		cy.get('[data-test="sign-in"]');
-	});
-
-	it('should have a "Sign Up" button', () => {
-		cy.get('[data-test="sign-up"]');
-	});
+	it('should have the title of the application in the window', () => {});
 
 	it('should navigate to "/sign-in" when you click the "Sign In" button', () => {});
 

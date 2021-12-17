@@ -16,15 +16,6 @@ describe('Pokémon Search', () => {
 		cy.intercept('/pokemon-search/api?*').as('api');
 	});
 
-	it('should have an <h1> that days "Pokémon Search"', () => {
-		cy.get('h1').should('have.text', 'Pokémon Search');
-	});
-
-	it('should update the label when the user searches', () => {
-		cy.get('@search').type('bulba');
-		cy.get('@label').contains('bulba');
-	});
-
 	it('should call the API when the user types', () => {
 		cy.get('@search').type('bulba');
 		cy.wait('@api');
@@ -39,7 +30,9 @@ describe('Pokémon Search', () => {
 	it('should call the API with correct query parameter', () => {
 		cy.get('@search').type('char');
 		cy.wait('@api');
-		cy.location('search').should('contain', 'name=char');
+		cy.wait('@api').then((interception) => {
+			expect(interception.request.url).to.match(/\?name=char$/);
+		});
 	});
 
 	it('should pre-populate the search field with the query parameter', () => {
