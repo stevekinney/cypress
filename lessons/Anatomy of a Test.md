@@ -1,5 +1,7 @@
 # Anatomy of a Test
 
+**Note**: We're working with [this repository](https://github.com/stevekinney/cypress-starter).
+
 Let's take a look at that test we ran. Click on _Show in IDE_. If this is your first time, you'll see a little modal pop up asking what IDE you'd like. We can argue later is Finder counts an IDE, but I'm going to pick Visual Studio Code
 
 ![show-in-IDE.png](Attachments/show-in-IDE.png)
