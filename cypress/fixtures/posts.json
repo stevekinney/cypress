@@ -1,0 +1,32 @@
+{
+	"posts": [
+		{
+			"id": 1,
+			"content": "Ravioli are a form of Pop Tart.",
+			"createdAt": "2021-12-17T10:47:08.198Z",
+			"authorId": 1,
+			"author": { "id": 1, "email": "first@example.com" }
+		},
+		{
+			"id": 2,
+			"content": "Taco Bell is the premier fast food option.",
+			"createdAt": "2021-12-17T10:47:08.198Z",
+			"authorId": 1,
+			"author": { "id": 1, "email": "first@example.com" }
+		},
+		{
+			"id": 3,
+			"content": "Thanos had a point.",
+			"createdAt": "2021-12-17T10:47:08.201Z",
+			"authorId": 2,
+			"author": { "id": 2, "email": "second@example.com" }
+		},
+		{
+			"id": 4,
+			"content": "Winters in Minneapolis are delighful.",
+			"createdAt": "2021-12-17T10:47:08.201Z",
+			"authorId": 2,
+			"author": { "id": 2, "email": "second@example.com" }
+		}
+	]
+}

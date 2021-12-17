@@ -1,30 +1,12 @@
-[
-	{
-		"email": "first@example.com",
-		"password": "password123",
-		"posts": {
-			"create": [
-				{
-					"content": "Ravioli are a form of Pop Tart."
-				},
-				{
-					"content": "Taco Bell is the premier fast food option."
-				}
-			]
+{
+	"users": [
+		{
+			"id": 1,
+			"email": "first@example.com"
+		},
+		{
+			"id": 2,
+			"email": "second@example.com"
 		}
-	},
-	{
-		"email": "second@example.com",
-		"password": "password456",
-		"posts": {
-			"create": [
-				{
-					"content": "Thanos had a point."
-				},
-				{
-					"content": "Winters in Minneapolis are delighful."
-				}
-			]
-		}
-	}
-]
+	]
+}

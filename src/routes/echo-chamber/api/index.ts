@@ -5,7 +5,12 @@ import type { ServerRequest } from '@sveltejs/kit/types/hooks';
 export const get: RequestHandler = async () => {
 	const posts = await prisma.post.findMany({
 		include: {
-			author: true
+			author: {
+				select: {
+					id: true,
+					email: true
+				}
+			}
 		}
 	});
 
