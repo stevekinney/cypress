@@ -58,6 +58,6 @@ If you look in `prisma/seed.cjs`, there is another file called seed that will cr
   - Logs in with one of the users.
   - Verifies that login works in some way.
 
-## Extentions
+## Extensions
 
-[Starting a web server](https://docs.cypress.io/guides/references/best-practices#Web-Servers)
+Curious about [what else plugins can do](https://docs.cypress.io/plugins/directory)?
