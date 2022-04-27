@@ -17,8 +17,8 @@
     "seed": "node prisma/reset.cjs"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-auto": "1.0.0-next.10",
+    "@sveltejs/kit": "1.0.0-next.202",
     "@types/cookie": "^0.4.1",
     "@types/lodash": "^4.14.177",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
