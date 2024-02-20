@@ -24,7 +24,6 @@
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "autoprefixer": "^10.4.0",
-    "cypress": "^9.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
@@ -45,6 +44,8 @@
     "@prisma/client": "^3.6.0",
     "@zerodevx/svelte-toast": "^0.6.2",
     "cookie": "^0.4.1",
-    "date-fns": "^2.26.0"
+    "cypress": "^13.6.4",
+    "date-fns": "^2.26.0",
+    "vite": ""
   }
 }
