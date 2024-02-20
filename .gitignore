@@ -8,3 +8,4 @@ node_modules
 *.db-journal
 cypress/videos
 cypress/screenshots
+bun.lockb
